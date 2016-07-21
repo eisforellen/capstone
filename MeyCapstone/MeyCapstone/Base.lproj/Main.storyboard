@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="aMn-5p-ysS">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pxk-WF-RgK">
+                                <rect key="frame" x="85" y="236" width="151" height="70"/>
+                                <color key="backgroundColor" red="0.0" green="0.70017011330000001" blue="0.75673076920000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="21"/>
+                                <state key="normal" title="Connect">
+                                    <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="connectButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ePC-3V-qqj"/>
+                                    <segue destination="fdd-Am-djL" kind="push" id="klN-fs-5Kl"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="l7e-nc-HjN"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="524" y="386"/>
+        </scene>
+        <!--Connections View Controller-->
+        <scene sceneID="yPW-Ur-qMl">
+            <objects>
+                <viewController id="fdd-Am-djL" customClass="ConnectionsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WOe-Wn-mm0"/>
+                        <viewControllerLayoutGuide type="bottom" id="aPE-Zt-lOS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cUm-fB-8EJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Player Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v6x-Dd-Mcw">
+                                <rect key="frame" x="32" y="86" width="199" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="mbO-qZ-R8g">
+                                <rect key="frame" x="40" y="267" width="240" height="200"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.0" green="0.70017011330000001" blue="0.75673076920000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2gY-G4-Npp">
+                                <rect key="frame" x="198" y="124" width="51" height="31"/>
+                                <color key="onTintColor" red="0.45059788909999998" green="0.94863782050000001" blue="0.55277638340000002" alpha="0.60945581900000001" colorSpace="calibratedRGB"/>
+                                <color key="thumbTintColor" red="0.0" green="0.70017011330000001" blue="0.75673076920000004" alpha="1" colorSpace="calibratedRGB"/>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Visible to Others:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FhJ-du-dPa">
+                                <rect key="frame" x="71" y="129" width="121" height="21"/>
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="15"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6XS-KI-OWX">
+                                <rect key="frame" x="229" y="86" width="60" height="30"/>
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="15"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" red="0.0" green="0.70017011330000001" blue="0.75673076920000004" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="savePlayerNameButton:" destination="fdd-Am-djL" eventType="touchUpInside" id="lH0-3a-nGk"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Connected Players:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGM-vn-H8J">
+                                <rect key="frame" x="86" y="238" width="149" height="21"/>
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="15"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xpL-CY-KOs">
+                                <rect key="frame" x="121" y="527" width="78" height="30"/>
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="12"/>
+                                <state key="normal" title="Disconnect">
+                                    <color key="titleColor" red="0.0" green="0.70017011330000001" blue="0.75673076920000004" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="disconnectButtonClicked:" destination="fdd-Am-djL" eventType="touchUpInside" id="a1S-Ai-koq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TFM-Hu-bfL">
+                                <rect key="frame" x="71" y="481" width="179" height="38"/>
+                                <color key="backgroundColor" red="0.45059788909999998" green="0.94863782050000001" blue="0.55277638340000002" alpha="0.60945581900000001" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="15"/>
+                                <state key="normal" title="Start Game">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="startGameButtonClicked:" destination="fdd-Am-djL" eventType="touchUpInside" id="ZzT-nH-0mX"/>
+                                </connections>
+                            </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Joz-fK-vIF">
+                                <rect key="frame" x="198" y="124" width="51" height="31"/>
+                                <color key="onTintColor" red="0.45059788909999998" green="0.94863782050000001" blue="0.55277638340000002" alpha="0.60945581900000001" colorSpace="calibratedRGB"/>
+                                <color key="thumbTintColor" red="0.0" green="0.70017011330000001" blue="0.75673076920000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="toggleVisibility:" destination="fdd-Am-djL" eventType="valueChanged" id="fei-gv-U7S"/>
+                                </connections>
+                            </switch>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8z6-VP-NZI">
+                                <rect key="frame" x="71" y="169" width="176" height="36"/>
+                                <color key="backgroundColor" red="0.0" green="0.70017011330000001" blue="0.75673076920000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="15"/>
+                                <state key="normal" title="Browse for Players">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="searchForPlayers:" destination="fdd-Am-djL" eventType="touchUpInside" id="Jzl-kl-hUZ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="yai-bo-KOv"/>
+                    <connections>
+                        <outlet property="switchVisible" destination="Joz-fK-vIF" id="ZrO-hr-GUu"/>
+                        <outlet property="textPlayerName" destination="v6x-Dd-Mcw" id="iJq-k4-VS4"/>
+                        <outlet property="textViewPlayerList" destination="mbO-qZ-R8g" id="nJb-9J-Xkf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Ac-ZV-ApI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="915" y="386"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="4vF-Zk-FVx">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aMn-5p-ysS" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CUx-AX-7NH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="xbt-oY-Zpy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DBR-Mp-55q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="97" y="386"/>
+        </scene>
+    </scenes>
+</document>
