@@ -29,16 +29,61 @@
     [_appDelegate.mcHandler setupPeerWithDisplayName:[UIDevice currentDevice].name];
     [_appDelegate.mcHandler setupSession];
     [_appDelegate.mcHandler advertiseSelf:_switchVisible.isOn];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(peerChangedStateWithNotification:) name:@"DidChangeStateNotification" object:nil];
+    
+    [_textPlayerName setDelegate:self];
 }
 
+- (void)peerChangedStateWithNotification:(NSNotification *)notification {
+    // Get state of the peer
+    int state = [[[notification userInfo] objectForKey:@"state"] intValue];
+    
+    //Ignoring connecting state, if connected display the names of the peer
+    if (state != MCSessionStateConnecting) {
+        NSString *allPlayers = @"";
+        for (int i = 0; i < _appDelegate.mcHandler.session.connectedPeers.count; i++) {
+            NSString *displayName = [[_appDelegate.mcHandler.session.connectedPeers objectAtIndex:i] displayName];
+            allPlayers = [allPlayers stringByAppendingString:@"\n"];
+            allPlayers = [allPlayers stringByAppendingString:displayName];
+        }
+        
+        [_textViewPlayerList setText:allPlayers];
+    }
+    
+}
+
+// Set Player Name - need to add edge case of trying to create name after already in a session
+- (void)setPlayerName{
+    [_textPlayerName resignFirstResponder];
+    
+    if (_appDelegate.mcHandler.peerID != nil) {
+        [_appDelegate.mcHandler.session disconnect];
+        _appDelegate.mcHandler.peerID = nil;
+        _appDelegate.mcHandler.session = nil;
+    }
+    
+    [_appDelegate.mcHandler setupPeerWithDisplayName:_textPlayerName.text];
+    [_appDelegate.mcHandler setupSession];
+    [_appDelegate.mcHandler advertiseSelf:_switchVisible.isOn];
+};
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self setPlayerName];
+    return YES;
+}
 
 - (IBAction)savePlayerNameButton:(id)sender {
+    [self setPlayerName];
 }
 
+// Turn off advertiser if switch is off
 - (IBAction)toggleVisibility:(id)sender {
+    [_appDelegate.mcHandler advertiseSelf:_switchVisible.isOn];
 }
 
 - (IBAction)disconnectButtonClicked:(id)sender {
+    [_appDelegate.mcHandler.session disconnect];
 }
 
 - (IBAction)searchForPlayers:(id)sender {
