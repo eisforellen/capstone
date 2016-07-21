@@ -132,7 +132,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="yai-bo-KOv"/>
+                    <navigationItem key="navigationItem" id="yai-bo-KOv">
+                        <barButtonItem key="backBarButtonItem" title="Cancel" id="LnQ-lM-AYR"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="switchVisible" destination="Joz-fK-vIF" id="ZrO-hr-GUu"/>
                         <outlet property="textPlayerName" destination="v6x-Dd-Mcw" id="iJq-k4-VS4"/>
