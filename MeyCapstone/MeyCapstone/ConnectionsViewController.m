@@ -29,6 +29,26 @@
     [_appDelegate.mcHandler setupPeerWithDisplayName:[UIDevice currentDevice].name];
     [_appDelegate.mcHandler setupSession];
     [_appDelegate.mcHandler advertiseSelf:_switchVisible.isOn];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(peerChangedStateWithNotification:) name:@"DidChangeStateNotification" object:nil];
+}
+
+- (void)peerChangedStateWithNotification:(NSNotification *)notification {
+    // Get state of the peer
+    int state = [[[notification userInfo] objectForKey:@"state"] intValue];
+    
+    //Ignoring connecting state, if connected display the names of the peer
+    if (state != MCSessionStateConnecting) {
+        NSString *allPlayers = @"";
+        for (int i = 0; i < _appDelegate.mcHandler.session.connectedPeers.count; i++) {
+            NSString *displayName = [[_appDelegate.mcHandler.session.connectedPeers objectAtIndex:i] displayName];
+            allPlayers = [allPlayers stringByAppendingString:@"\n"];
+            allPlayers = [allPlayers stringByAppendingString:displayName];
+        }
+        
+        [_textViewPlayerList setText:allPlayers];
+    }
+    
 }
 
 
