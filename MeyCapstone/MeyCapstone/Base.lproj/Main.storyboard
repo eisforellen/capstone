@@ -167,9 +167,24 @@
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rJL-eW-iE2">
+                                            <rect key="frame" x="8" y="8" width="304" height="304"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="al1-Fk-mUR">
+                                            <rect key="frame" x="8" y="290" width="304" height="22"/>
+                                            <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="18"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <color key="backgroundColor" red="0.0" green="0.70017011330000001" blue="0.75673076920000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="image" destination="rJL-eW-iE2" id="lm9-sL-zvd"/>
+                                    <outlet property="label" destination="al1-Fk-mUR" id="8N5-Ff-Exm"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -177,7 +192,13 @@
                             <outlet property="delegate" destination="cGz-7H-B5X" id="41w-YF-VpX"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="ZSs-G7-Xnk"/>
+                    <navigationItem key="navigationItem" id="ZSs-G7-Xnk">
+                        <barButtonItem key="rightBarButtonItem" title="Make Your Pick" id="C2n-s5-kXn">
+                            <connections>
+                                <action selector="pickWinnerButtonClicked:" destination="cGz-7H-B5X" id="VBA-5g-nev"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TES-61-sXZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

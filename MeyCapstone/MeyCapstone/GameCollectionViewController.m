@@ -7,6 +7,7 @@
 //
 
 #import "GameCollectionViewController.h"
+#import "GameCollectionViewCell.h"
 
 @interface GameCollectionViewController ()
 
@@ -42,6 +43,10 @@ static NSString * const reuseIdentifier = @"Cell";
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)pickWinnerButtonClicked:(id)sender {
+    // Add functionality for what happens when a winner is selected
+}
+
 
 #pragma mark <UICollectionViewDataSource>
 
@@ -56,9 +61,10 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    GameCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     // Configure the cell
+    cell.label.text = [NSString stringWithFormat:@"%li", (long)indexPath.row];
     
     return cell;
 }
