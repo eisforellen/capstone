@@ -108,6 +108,7 @@
                                 </state>
                                 <connections>
                                     <action selector="startGameButtonClicked:" destination="fdd-Am-djL" eventType="touchUpInside" id="ZzT-nH-0mX"/>
+                                    <segue destination="cGz-7H-B5X" kind="push" id="R1t-ct-kVS"/>
                                 </connections>
                             </button>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Joz-fK-vIF">
@@ -144,6 +145,43 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Ac-ZV-ApI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="915" y="386"/>
+        </scene>
+        <!--Game Collection View Controller-->
+        <scene sceneID="frq-k9-ikL">
+            <objects>
+                <collectionViewController id="cGz-7H-B5X" customClass="GameCollectionViewController" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Izl-rO-jtZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.45059788909999998" green="0.94863782050000001" blue="0.55277638340000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6L8-mP-5GK">
+                            <size key="itemSize" width="320" height="320"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="3dQ-6c-PrA" customClass="GameCollectionViewCell">
+                                <rect key="frame" x="0.0" y="64" width="320" height="320"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" red="0.0" green="0.70017011330000001" blue="0.75673076920000004" alpha="1" colorSpace="calibratedRGB"/>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="cGz-7H-B5X" id="AHJ-Ot-R3s"/>
+                            <outlet property="delegate" destination="cGz-7H-B5X" id="41w-YF-VpX"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="ZSs-G7-Xnk"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TES-61-sXZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="915" y="1157"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4vF-Zk-FVx">

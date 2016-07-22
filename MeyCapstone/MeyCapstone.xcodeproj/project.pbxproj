@@ -15,6 +15,8 @@
 		4286D6EC1D4117F7009C5947 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4286D6EA1D4117F7009C5947 /* LaunchScreen.storyboard */; };
 		4286D6F51D4118AA009C5947 /* MCHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4286D6F41D4118AA009C5947 /* MCHandler.m */; };
 		4286D6FA1D411CE4009C5947 /* ConnectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4286D6F91D411CE4009C5947 /* ConnectionsViewController.m */; };
+		4286D7781D4298DB009C5947 /* GameCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4286D7771D4298DB009C5947 /* GameCollectionViewController.m */; };
+		4286D77B1D4299AC009C5947 /* GameCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4286D77A1D4299AC009C5947 /* GameCollectionViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,10 @@
 		4286D6F41D4118AA009C5947 /* MCHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCHandler.m; sourceTree = "<group>"; };
 		4286D6F81D411CE4009C5947 /* ConnectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionsViewController.h; sourceTree = "<group>"; };
 		4286D6F91D411CE4009C5947 /* ConnectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionsViewController.m; sourceTree = "<group>"; };
+		4286D7761D4298DB009C5947 /* GameCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCollectionViewController.h; sourceTree = "<group>"; };
+		4286D7771D4298DB009C5947 /* GameCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCollectionViewController.m; sourceTree = "<group>"; };
+		4286D7791D4299AC009C5947 /* GameCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCollectionViewCell.h; sourceTree = "<group>"; };
+		4286D77A1D4299AC009C5947 /* GameCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCollectionViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +107,10 @@
 				4286D6E31D4117F7009C5947 /* ViewController.m */,
 				4286D6F81D411CE4009C5947 /* ConnectionsViewController.h */,
 				4286D6F91D411CE4009C5947 /* ConnectionsViewController.m */,
+				4286D7761D4298DB009C5947 /* GameCollectionViewController.h */,
+				4286D7771D4298DB009C5947 /* GameCollectionViewController.m */,
+				4286D7791D4299AC009C5947 /* GameCollectionViewCell.h */,
+				4286D77A1D4299AC009C5947 /* GameCollectionViewCell.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -176,9 +186,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4286D7781D4298DB009C5947 /* GameCollectionViewController.m in Sources */,
 				4286D6FA1D411CE4009C5947 /* ConnectionsViewController.m in Sources */,
 				4286D6F51D4118AA009C5947 /* MCHandler.m in Sources */,
 				4286D6E41D4117F7009C5947 /* ViewController.m in Sources */,
+				4286D77B1D4299AC009C5947 /* GameCollectionViewCell.m in Sources */,
 				4286D6E11D4117F7009C5947 /* AppDelegate.m in Sources */,
 				4286D6DE1D4117F7009C5947 /* main.m in Sources */,
 			);
@@ -329,6 +341,7 @@
 				4286D6F21D4117F7009C5947 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
