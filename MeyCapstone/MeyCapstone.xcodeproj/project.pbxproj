@@ -17,6 +17,7 @@
 		4286D6FA1D411CE4009C5947 /* ConnectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4286D6F91D411CE4009C5947 /* ConnectionsViewController.m */; };
 		4286D7781D4298DB009C5947 /* GameCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4286D7771D4298DB009C5947 /* GameCollectionViewController.m */; };
 		4286D77B1D4299AC009C5947 /* GameCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4286D77A1D4299AC009C5947 /* GameCollectionViewCell.m */; };
+		4286D7A11D466258009C5947 /* ImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4286D7A01D466258009C5947 /* ImagePickerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,8 @@
 		4286D7771D4298DB009C5947 /* GameCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCollectionViewController.m; sourceTree = "<group>"; };
 		4286D7791D4299AC009C5947 /* GameCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCollectionViewCell.h; sourceTree = "<group>"; };
 		4286D77A1D4299AC009C5947 /* GameCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCollectionViewCell.m; sourceTree = "<group>"; };
+		4286D79F1D466258009C5947 /* ImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePickerViewController.h; sourceTree = "<group>"; };
+		4286D7A01D466258009C5947 /* ImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePickerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +114,8 @@
 				4286D7771D4298DB009C5947 /* GameCollectionViewController.m */,
 				4286D7791D4299AC009C5947 /* GameCollectionViewCell.h */,
 				4286D77A1D4299AC009C5947 /* GameCollectionViewCell.m */,
+				4286D79F1D466258009C5947 /* ImagePickerViewController.h */,
+				4286D7A01D466258009C5947 /* ImagePickerViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -192,6 +197,7 @@
 				4286D6E41D4117F7009C5947 /* ViewController.m in Sources */,
 				4286D77B1D4299AC009C5947 /* GameCollectionViewCell.m in Sources */,
 				4286D6E11D4117F7009C5947 /* AppDelegate.m in Sources */,
+				4286D7A11D466258009C5947 /* ImagePickerViewController.m in Sources */,
 				4286D6DE1D4117F7009C5947 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
