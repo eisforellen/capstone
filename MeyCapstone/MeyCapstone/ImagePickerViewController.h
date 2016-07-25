@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Game.h"
+#import "SubmittedAnswer.h"
 
 @interface ImagePickerViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;

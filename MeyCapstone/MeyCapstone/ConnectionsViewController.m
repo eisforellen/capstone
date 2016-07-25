@@ -124,7 +124,7 @@
     
 }
 
-// Adds user to 
+// Adds user to players array
 
 - (NSArray *)createPlayersArray{
     NSArray *connectedPeers = _appDelegate.mcHandler.session.connectedPeers;

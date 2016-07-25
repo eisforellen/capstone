@@ -7,8 +7,11 @@
 //
 
 #import "ImagePickerViewController.h"
+#import "AppDelegate.h"
 
 @interface ImagePickerViewController ()
+
+@property (strong, nonatomic) AppDelegate *appDelegate;
 
 @end
 
@@ -16,7 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,6 +66,10 @@
 }
 
 - (IBAction)submitImage:(id)sender {
+    SubmittedAnswer *submission = [[SubmittedAnswer alloc] init];
+    submission.submittedImage = _imageView.image;
+    submission.sender = _appDelegate.mcHandler.session.myPeerID.displayName;
+    
 }
 
 /*
