@@ -108,7 +108,7 @@
                                 </state>
                                 <connections>
                                     <action selector="startGameButtonClicked:" destination="fdd-Am-djL" eventType="touchUpInside" id="ZzT-nH-0mX"/>
-                                    <segue destination="iqB-1N-ffy" kind="push" id="07g-AE-VQP"/>
+                                    <segue destination="iqB-1N-ffy" kind="push" identifier="toImagePickerVC" id="07g-AE-VQP"/>
                                 </connections>
                             </button>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Joz-fK-vIF">
@@ -188,7 +188,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Submit" id="dV9-NI-hBF">
                             <connections>
                                 <action selector="submitImage:" destination="iqB-1N-ffy" id="TYL-NO-yA8"/>
-                                <segue destination="cGz-7H-B5X" kind="push" id="XWu-wD-Xag"/>
+                                <segue destination="cGz-7H-B5X" kind="push" identifier="toGameCollectionVC" id="XWu-wD-Xag"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

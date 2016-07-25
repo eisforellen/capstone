@@ -8,7 +8,10 @@
 
 #import "ViewController.h"
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
+#import "Game.h"
 
 @interface ConnectionsViewController : ViewController <MCBrowserViewControllerDelegate, UITextFieldDelegate>
+
+@property (nonatomic, strong) Game *game;
 
 @end

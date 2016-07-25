@@ -48,6 +48,19 @@
     
     [self presentViewController:picker animated:YES completion:nil];
 }
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
+    
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    _imageView.image = chosenImage;
+    
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (IBAction)submitImage:(id)sender {
 }
 

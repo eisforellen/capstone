@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Game.h"
 
 @interface ImagePickerViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic) Game *game;
 
 @end
