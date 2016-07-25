@@ -108,7 +108,7 @@
                                 </state>
                                 <connections>
                                     <action selector="startGameButtonClicked:" destination="fdd-Am-djL" eventType="touchUpInside" id="ZzT-nH-0mX"/>
-                                    <segue destination="cGz-7H-B5X" kind="push" id="R1t-ct-kVS"/>
+                                    <segue destination="iqB-1N-ffy" kind="push" id="07g-AE-VQP"/>
                                 </connections>
                             </button>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Joz-fK-vIF">
@@ -145,6 +145,60 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Ac-ZV-ApI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="915" y="386"/>
+        </scene>
+        <!--Image Picker View Controller-->
+        <scene sceneID="IXA-eE-WMQ">
+            <objects>
+                <viewController id="iqB-1N-ffy" customClass="ImagePickerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fCR-yt-bbv"/>
+                        <viewControllerLayoutGuide type="bottom" id="z3j-Cn-X8z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Gx4-xS-ve3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bew-cC-IsZ">
+                                <rect key="frame" x="20" y="356" width="120" height="37"/>
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="15"/>
+                                <state key="normal" title="Take Photo">
+                                    <color key="titleColor" red="0.0" green="0.70017011330000001" blue="0.75673076920000004" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="takePhoto:" destination="iqB-1N-ffy" eventType="touchUpInside" id="p0N-aB-g6E"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OXC-LR-Avi">
+                                <rect key="frame" x="171" y="356" width="129" height="37"/>
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="15"/>
+                                <state key="normal" title="Select from Photos">
+                                    <color key="titleColor" red="0.0" green="0.70017011330000001" blue="0.75673076920000004" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="selectPhoto:" destination="iqB-1N-ffy" eventType="touchUpInside" id="QQn-TT-S0D"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2M8-GD-6dv">
+                                <rect key="frame" x="0.0" y="28" width="320" height="320"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="EZ2-i4-dQe">
+                        <barButtonItem key="rightBarButtonItem" title="Submit" id="dV9-NI-hBF">
+                            <connections>
+                                <action selector="submitImage:" destination="iqB-1N-ffy" id="TYL-NO-yA8"/>
+                                <segue destination="cGz-7H-B5X" kind="push" id="XWu-wD-Xag"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="imageView" destination="2M8-GD-6dv" id="p3D-Lk-wKg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zCs-rC-Etr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1318" y="97"/>
         </scene>
         <!--Game Collection View Controller-->
         <scene sceneID="frq-k9-ikL">
@@ -202,7 +256,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TES-61-sXZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="915" y="1157"/>
+            <point key="canvasLocation" x="1318" y="845"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4vF-Zk-FVx">
