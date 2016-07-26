@@ -8,8 +8,13 @@
 
 #import "GameCollectionViewController.h"
 #import "GameCollectionViewCell.h"
+#import "AppDelegate.h"
+#import "SubmittedAnswer.h"
+
 
 @interface GameCollectionViewController ()
+
+@property (nonatomic, strong) AppDelegate *appDelegate;
 
 @end
 
@@ -20,14 +25,53 @@ static NSString * const reuseIdentifier = @"Cell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
+    _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    // Register cell classes
-    //[self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    //_game = [[Game alloc] init];
+    NSLog(@"GAME COLLECTION VIEW DID LOAD PLAYERS ARRAY %@\n\n", _game.playersArray);
+   
+   // _arrayOfSubmittedAnswers = [[NSMutableArray alloc] init];
     
-    // Do any additional setup after loading the view.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleReceivingDataWithNotification:) name:@"DidReceiveDataNotification" object:nil];
+    // AddObserver and Notification for when the above handle is triggered to send a notification back to the sender
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(peersDidReceiveDataWithNotification:) name:@"PeerReceivedDataNotification" object:nil];
+
 }
+
+- (void)viewDidAppear:(BOOL)animated{
+//    [self.collectionView reloadData];
+}
+
+- (void)handleReceivingDataWithNotification:(NSNotification *)notification {
+    // Handles received notification. Gets the submittedAnswer from the ImagePickerVC and then adds it to an array of submitted answers
+    NSDictionary *userInfo = [notification userInfo];
+    
+    NSData *receivedData = [userInfo objectForKey:@"data"];
+    SubmittedAnswer *submittedAnswer = [NSKeyedUnarchiver unarchiveObjectWithData:receivedData];
+    NSLog(@"Submitted Answer: %@", submittedAnswer);
+    
+    if (submittedAnswer != nil) {
+        [_arrayOfSubmittedAnswers addObject:submittedAnswer];
+    }
+    NSLog(@"Array of Submitted Answers: %@", _arrayOfSubmittedAnswers);
+    
+    
+    // Adding notification that gets sent back to sender
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"PeerReceivedDataNotification" object:nil userInfo:userInfo];
+        NSLog(@"Notification was sent via dispath async");
+    });
+    [self.collectionView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+
+}
+
+- (void)peersDidReceiveDataWithNotification:(NSNotification *)notification{
+    NSLog(@"peersDidReceiveDataWithNotification called \n\n!!!!!!!!!!!!!!!!!!!!!");
+    [self.collectionView reloadData];
+
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -56,15 +100,17 @@ static NSString * const reuseIdentifier = @"Cell";
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-// Return player count
-    return 7;
+    //return _game.playersArray.count;
+    return _arrayOfSubmittedAnswers.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     GameCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     // Configure the cell
-    cell.label.text = [NSString stringWithFormat:@"%li", (long)indexPath.row];
+    
+    cell.label.text = [[_arrayOfSubmittedAnswers objectAtIndex:indexPath.row] sender];
+    cell.image.image = [[_arrayOfSubmittedAnswers objectAtIndex:indexPath.row] submittedImage];
     
     return cell;
 }

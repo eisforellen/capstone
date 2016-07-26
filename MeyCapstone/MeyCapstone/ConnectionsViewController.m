@@ -8,6 +8,9 @@
 
 #import "ConnectionsViewController.h"
 #import "AppDelegate.h"
+#import "GameCollectionViewController.h"
+#import "ImagePickerViewController.h"
+
 
 @interface ConnectionsViewController ()
 
@@ -96,8 +99,7 @@
     }
 }
 
-- (IBAction)startGameButtonClicked:(id)sender {
-}
+
 
 - (void)browserViewControllerDidFinish:(MCBrowserViewController *)browserViewController{
     [_appDelegate.mcHandler.browser dismissViewControllerAnimated:YES completion:nil];
@@ -113,14 +115,51 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+// Create instance of a game when you click start
+// Populate an array of connectedPeers
+- (IBAction)startGameButtonClicked:(id)sender {
+    //moved to prepare for segue to get it to hit in the right order
+    
+//    _game = [[Game alloc] init];
+//    
+//    [_game setupGame:[self createPlayersArray]];
+    
+    
+}
+
+// Adds user to players array
+
+- (NSArray *)createPlayersArray{
+    NSArray *connectedPeers = _appDelegate.mcHandler.session.connectedPeers;
+    connectedPeers = [connectedPeers arrayByAddingObject:_appDelegate.mcHandler.session.myPeerID];
+    NSLog(@"CONNECTED PEERS ARRAY?@?@?@ \n\n %@", connectedPeers);
+    
+    return connectedPeers;
+}
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    // if player is the dealer then toGameCollectionVC, else toImagePickerVC
+    _game = [[Game alloc] init];
+    
+    [_game setupGame:[self createPlayersArray]];
+    
+    if ([[segue identifier] isEqualToString:@"toImagePickerVC"]) {
+        NSLog(@"TO THE IMAGE PICKER\n %@", _game.playersArray);
+        ImagePickerViewController *vc = [segue destinationViewController];
+        vc.game = _game;
+        vc.game.playersArray = _game.playersArray;
+        
+        
+    } else {
+        NSLog(@"$$$$To the Game Collection View$$$$\n");
+        GameCollectionViewController *vc = [segue destinationViewController];
+        vc.game = _game;
+        vc.game.playersArray = _game.playersArray;
+    }
+    
 }
-*/
+
 
 @end
