@@ -33,11 +33,13 @@ static NSString * const reuseIdentifier = @"Cell";
    // _arrayOfSubmittedAnswers = [[NSMutableArray alloc] init];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleReceivingDataWithNotification:) name:@"DidReceiveDataNotification" object:nil];
+    // AddObserver and Notification for when the above handle is triggered to send a notification back to the sender
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(peersDidReceiveDataWithNotification:) name:@"PeerReceivedDataNotification" object:nil];
 
 }
 
 - (void)viewDidAppear:(BOOL)animated{
-    [self.collectionView reloadData];
+//    [self.collectionView reloadData];
 }
 
 - (void)handleReceivingDataWithNotification:(NSNotification *)notification {
@@ -52,7 +54,22 @@ static NSString * const reuseIdentifier = @"Cell";
         [_arrayOfSubmittedAnswers addObject:submittedAnswer];
     }
     NSLog(@"Array of Submitted Answers: %@", _arrayOfSubmittedAnswers);
+    
+    
+    // Adding notification that gets sent back to sender
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"PeerReceivedDataNotification" object:nil userInfo:userInfo];
+        NSLog(@"Notification was sent via dispath async");
+    });
+    [self.collectionView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+
+}
+
+- (void)peersDidReceiveDataWithNotification:(NSNotification *)notification{
+    NSLog(@"peersDidReceiveDataWithNotification called \n\n!!!!!!!!!!!!!!!!!!!!!");
     [self.collectionView reloadData];
+
 }
 
 
@@ -84,7 +101,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     //return _game.playersArray.count;
-    return _arrayOfSubmittedAnswers.count - 1;
+    return _arrayOfSubmittedAnswers.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {

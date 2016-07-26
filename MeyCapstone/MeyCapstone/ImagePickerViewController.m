@@ -94,6 +94,7 @@
     
     // add submission to array to pass own image to populate collection view
     NSMutableArray *arrayOfOwnSubmission = [[NSMutableArray alloc] initWithObjects:submission, nil];
+    
     if ([[segue identifier] isEqualToString:@"toGameCollectionVC"]){
         GameCollectionViewController *vc = [segue destinationViewController];
         NSLog(@"\n\n PREPARE FOR SEGUE FROM IP, current players array: %@", _game.playersArray);
