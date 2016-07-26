@@ -36,6 +36,10 @@ static NSString * const reuseIdentifier = @"Cell";
 
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    [self.collectionView reloadData];
+}
+
 - (void)handleReceivingDataWithNotification:(NSNotification *)notification {
     // Handles received notification. Gets the submittedAnswer from the ImagePickerVC and then adds it to an array of submitted answers
     NSDictionary *userInfo = [notification userInfo];
@@ -88,7 +92,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     // Configure the cell
     
-    cell.label.text = [[_game.playersArray objectAtIndex:indexPath.row] displayName];
+    cell.label.text = [[_arrayOfSubmittedAnswers objectAtIndex:indexPath.row] sender];
     cell.image.image = [[_arrayOfSubmittedAnswers objectAtIndex:indexPath.row] submittedImage];
     
     return cell;
