@@ -8,8 +8,13 @@
 
 #import "GameCollectionViewController.h"
 #import "GameCollectionViewCell.h"
+#import "AppDelegate.h"
+#import "SubmittedAnswer.h"
+
 
 @interface GameCollectionViewController ()
+
+@property (nonatomic, strong) AppDelegate *appDelegate;
 
 @end
 
@@ -20,8 +25,32 @@ static NSString * const reuseIdentifier = @"Cell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    //_game = [[Game alloc] init];
+    NSLog(@"GAME COLLECTION VIEW DID LOAD PLAYERS ARRAY %@\n\n", _game.playersArray);
+   
+   // _arrayOfSubmittedAnswers = [[NSMutableArray alloc] init];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleReceivingDataWithNotification:) name:@"DidReceiveDataNotification" object:nil];
 
 }
+
+- (void)handleReceivingDataWithNotification:(NSNotification *)notification {
+    // Handles received notification. Gets the submittedAnswer from the ImagePickerVC and then adds it to an array of submitted answers
+    NSDictionary *userInfo = [notification userInfo];
+    
+    NSData *receivedData = [userInfo objectForKey:@"data"];
+    SubmittedAnswer *submittedAnswer = [NSKeyedUnarchiver unarchiveObjectWithData:receivedData];
+    NSLog(@"Submitted Answer: %@", submittedAnswer);
+    
+    if (submittedAnswer != nil) {
+        [_arrayOfSubmittedAnswers addObject:submittedAnswer];
+    }
+    NSLog(@"Array of Submitted Answers: %@", _arrayOfSubmittedAnswers);
+    [self.collectionView reloadData];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -50,15 +79,16 @@ static NSString * const reuseIdentifier = @"Cell";
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-// Return player count
-    return 7;
+    return _game.playersArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     GameCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     // Configure the cell
-    cell.label.text = [NSString stringWithFormat:@"%li", (long)indexPath.row];
+    
+    cell.label.text = [[_game.playersArray objectAtIndex:indexPath.row] displayName];
+    cell.image.image = [[_arrayOfSubmittedAnswers objectAtIndex:indexPath.row] submittedImage];
     
     return cell;
 }

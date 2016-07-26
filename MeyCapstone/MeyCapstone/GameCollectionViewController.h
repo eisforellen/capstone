@@ -12,5 +12,6 @@
 @interface GameCollectionViewController : UICollectionViewController
 
 @property (nonatomic, strong) Game *game;
+@property (nonatomic, strong) NSMutableArray *arrayOfSubmittedAnswers;
 
 @end

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface SubmittedAnswer : NSObject
+@interface SubmittedAnswer : NSObject <NSCoding>
 
 @property (nonatomic, strong) NSString *sender;
 @property (nonatomic, strong) UIImage *submittedImage;
