@@ -21,6 +21,7 @@
 		4286D7A41D4668B8009C5947 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 4286D7A31D4668B8009C5947 /* Player.m */; };
 		4286D7A81D46769E009C5947 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 4286D7A71D46769E009C5947 /* Game.m */; };
 		4286D7AB1D467727009C5947 /* SubmittedAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4286D7AA1D467727009C5947 /* SubmittedAnswer.m */; };
+		4286D7AE1D490178009C5947 /* ScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4286D7AD1D490178009C5947 /* ScoreViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,8 @@
 		4286D7A71D46769E009C5947 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 		4286D7A91D467727009C5947 /* SubmittedAnswer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubmittedAnswer.h; sourceTree = "<group>"; };
 		4286D7AA1D467727009C5947 /* SubmittedAnswer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubmittedAnswer.m; sourceTree = "<group>"; };
+		4286D7AC1D490178009C5947 /* ScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreViewController.h; sourceTree = "<group>"; };
+		4286D7AD1D490178009C5947 /* ScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +129,8 @@
 				4286D77A1D4299AC009C5947 /* GameCollectionViewCell.m */,
 				4286D79F1D466258009C5947 /* ImagePickerViewController.h */,
 				4286D7A01D466258009C5947 /* ImagePickerViewController.m */,
+				4286D7AC1D490178009C5947 /* ScoreViewController.h */,
+				4286D7AD1D490178009C5947 /* ScoreViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -217,6 +222,7 @@
 				4286D7781D4298DB009C5947 /* GameCollectionViewController.m in Sources */,
 				4286D6FA1D411CE4009C5947 /* ConnectionsViewController.m in Sources */,
 				4286D6F51D4118AA009C5947 /* MCHandler.m in Sources */,
+				4286D7AE1D490178009C5947 /* ScoreViewController.m in Sources */,
 				4286D7AB1D467727009C5947 /* SubmittedAnswer.m in Sources */,
 				4286D6E41D4117F7009C5947 /* ViewController.m in Sources */,
 				4286D77B1D4299AC009C5947 /* GameCollectionViewCell.m in Sources */,
@@ -336,6 +342,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = MeyCapstone/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.detroitlabs.MeyCapstone;
@@ -347,6 +354,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = MeyCapstone/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.detroitlabs.MeyCapstone;
