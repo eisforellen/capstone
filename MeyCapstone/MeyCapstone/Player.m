@@ -14,9 +14,14 @@
 
 - (void)setupPlayerWith:(NSString *)name {
     _name = name;
-    _isDealer = NO;
+    _voted = NO;
     _score = 0;
+    _votesReceived = 0;
 }
+
+//- (Player *)getMe{
+//    return
+//}
 
 
 @end

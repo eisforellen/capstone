@@ -29,10 +29,15 @@
     // TODO randomize prompts array
     _promptsArray = @[@"This taco is ______", @"You may already be a ______", @"The worst thing I ever ate was _______", @"______, that's what he said!"];
     _turnCount = 0;
+    _totalVoteCount = 0;
 }
 
 - (void)awardPointToWinner:(Player *)player{
     player.score ++;
+}
+
+- (void)addVotesReceived:(Player *)player{
+    player.votesReceived ++;
 }
 
 @end
