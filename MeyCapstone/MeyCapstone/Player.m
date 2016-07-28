@@ -12,8 +12,10 @@
 
 @implementation Player
 
-- (void)setupPlayer {
-    
+- (void)setupPlayerWith:(NSString *)name {
+    _name = name;
+    _isDealer = NO;
+    _score = 0;
 }
 
 

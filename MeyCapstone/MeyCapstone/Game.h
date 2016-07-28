@@ -7,14 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Player.h"
 
 @interface Game : NSObject
 
-@property (nonatomic, strong) NSArray *playersArray;
+@property (nonatomic, strong) NSMutableArray *playersArray;
 @property (nonatomic, strong) NSArray *promptsArray;
 @property (nonatomic) int turnCount;
 
 - (void)setupGame:(NSArray *)connectedPeers;
+- (void)awardPointToWinner:(Player *)player;
 
 
 @end

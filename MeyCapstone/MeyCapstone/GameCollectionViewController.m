@@ -10,11 +10,13 @@
 #import "GameCollectionViewCell.h"
 #import "AppDelegate.h"
 #import "SubmittedAnswer.h"
+#import "ScoreViewController.h"
 
 
 @interface GameCollectionViewController ()
 
 @property (nonatomic, strong) AppDelegate *appDelegate;
+@property (nonatomic, strong) NSString *selectedWinnerName;
 
 @end
 
@@ -27,10 +29,6 @@ static NSString * const reuseIdentifier = @"Cell";
     
     _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    //_game = [[Game alloc] init];
-    NSLog(@"GAME COLLECTION VIEW DID LOAD PLAYERS ARRAY %@\n\n", _game.playersArray);
-   
-   // _arrayOfSubmittedAnswers = [[NSMutableArray alloc] init];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleReceivingDataWithNotification:) name:@"DidReceiveDataNotification" object:nil];
     // AddObserver and Notification for when the above handle is triggered to send a notification back to the sender
@@ -38,9 +36,6 @@ static NSString * const reuseIdentifier = @"Cell";
 
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-//    [self.collectionView reloadData];
-}
 
 - (void)handleReceivingDataWithNotification:(NSNotification *)notification {
     // Handles received notification. Gets the submittedAnswer from the ImagePickerVC and then adds it to an array of submitted answers
@@ -48,15 +43,16 @@ static NSString * const reuseIdentifier = @"Cell";
     
     NSData *receivedData = [userInfo objectForKey:@"data"];
     SubmittedAnswer *submittedAnswer = [NSKeyedUnarchiver unarchiveObjectWithData:receivedData];
-    NSLog(@"Submitted Answer: %@", submittedAnswer);
+    NSLog(@"Submitted Answer on handleReceivingData: %@", submittedAnswer);
     
-    if (submittedAnswer != nil) {
+    // check if the submission is already there, and if we have submissions for each player
+    if (submittedAnswer != nil && ![_arrayOfSubmittedAnswers containsObject:submittedAnswer] && _arrayOfSubmittedAnswers.count < _game.playersArray.count) {
         [_arrayOfSubmittedAnswers addObject:submittedAnswer];
     }
     NSLog(@"Array of Submitted Answers: %@", _arrayOfSubmittedAnswers);
     
     
-    // Adding notification that gets sent back to sender
+    // Adding notification that gets sent back to sender in order to trigger reloadData
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter] postNotificationName:@"PeerReceivedDataNotification" object:nil userInfo:userInfo];
@@ -67,7 +63,8 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 - (void)peersDidReceiveDataWithNotification:(NSNotification *)notification{
-    NSLog(@"peersDidReceiveDataWithNotification called \n\n!!!!!!!!!!!!!!!!!!!!!");
+    // reloadData for sender
+    NSLog(@"peersDidReceiveDataWithNotification called \n\n");
     [self.collectionView reloadData];
 
 }
@@ -78,15 +75,16 @@ static NSString * const reuseIdentifier = @"Cell";
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    ScoreViewController *vc = [segue destinationViewController];
+    vc.game = _game;
+    vc.game.playersArray = _game.playersArray;
+    vc.nameOfWinner = _selectedWinnerName;
 }
-*/
+
 - (IBAction)pickWinnerButtonClicked:(id)sender {
     // Add functionality for what happens when a winner is selected
 }
@@ -115,8 +113,15 @@ static NSString * const reuseIdentifier = @"Cell";
     return cell;
 }
 
-#pragma mark <UICollectionViewDelegate>
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    // capture the sender of the image that is selected and transfer that via segue to score vc
+    _selectedWinnerName = [[_arrayOfSubmittedAnswers objectAtIndex:indexPath.row] sender];
+    NSLog(@"\n\nSelectedWinnerName from sender is %@", _selectedWinnerName);
+    
+}
+
+#pragma mark <UICollectionViewDelegate>
 /*
 // Uncomment this method to specify if the specified item should be highlighted during tracking
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {

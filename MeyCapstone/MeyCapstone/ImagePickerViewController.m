@@ -13,6 +13,7 @@
 @interface ImagePickerViewController ()
 
 @property (strong, nonatomic) AppDelegate *appDelegate;
+@property (strong, nonatomic) NSMutableArray *arrayOfAnswersSubmittedBeforeMine;
 
 @end
 
@@ -22,6 +23,25 @@
     [super viewDidLoad];
     
     _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    //Added to listen for submissions that happen before you submit yours
+    _arrayOfAnswersSubmittedBeforeMine = [[NSMutableArray alloc] init];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleReceivingDataWithNotification:) name:@"DidReceiveDataNotification" object:nil];
+    
+}
+
+- (void)handleReceivingDataWithNotification:(NSNotification *)notification {
+    // Handles received notification. Gets the submittedAnswer from the ImagePickerVC and then adds it to an array of submitted answers
+    NSDictionary *userInfo = [notification userInfo];
+    
+    NSData *receivedData = [userInfo objectForKey:@"data"];
+    SubmittedAnswer *submittedAnswer = [NSKeyedUnarchiver unarchiveObjectWithData:receivedData];
+    NSLog(@"Received Submitted Answer: %@", submittedAnswer);
+    
+    if (submittedAnswer != nil) {
+        [_arrayOfAnswersSubmittedBeforeMine addObject:submittedAnswer];
+    }
+    NSLog(@"Array of Submitted Answers: %@", _arrayOfAnswersSubmittedBeforeMine);
     
     
 }
@@ -93,14 +113,16 @@
     }
     
     // add submission to array to pass own image to populate collection view
-    NSMutableArray *arrayOfOwnSubmission = [[NSMutableArray alloc] initWithObjects:submission, nil];
+    //NSMutableArray *arrayOfOwnSubmission = [[NSMutableArray alloc] initWithObjects:submission, nil];
     
     if ([[segue identifier] isEqualToString:@"toGameCollectionVC"]){
         GameCollectionViewController *vc = [segue destinationViewController];
         NSLog(@"\n\n PREPARE FOR SEGUE FROM IP, current players array: %@", _game.playersArray);
         vc.game = _game;
         vc.game.playersArray = _game.playersArray;
-        vc.arrayOfSubmittedAnswers = arrayOfOwnSubmission;
+        vc.arrayOfSubmittedAnswers = _arrayOfAnswersSubmittedBeforeMine;
+        [vc.arrayOfSubmittedAnswers addObject:submission];
+        
     }
 }
 

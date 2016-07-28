@@ -120,20 +120,25 @@
 - (IBAction)startGameButtonClicked:(id)sender {
     //moved to prepare for segue to get it to hit in the right order
     
-//    _game = [[Game alloc] init];
-//    
-//    [_game setupGame:[self createPlayersArray]];
-    
-    
 }
 
-// Adds user to players array
+// Adds players Display Name to array which will be use dto create a game of player ovjects
 
 - (NSArray *)createPlayersArray{
-    NSArray *connectedPeers = _appDelegate.mcHandler.session.connectedPeers;
-    connectedPeers = [connectedPeers arrayByAddingObject:_appDelegate.mcHandler.session.myPeerID];
-    NSLog(@"CONNECTED PEERS ARRAY?@?@?@ \n\n %@", connectedPeers);
+    // get my name
+    NSString *myName = _appDelegate.mcHandler.session.myPeerID.displayName;
+    // create a mutableArray, init with my name. Then iterate over connected peers and add each display name to the array
+    NSMutableArray *buildingConnectedPeersArray = [[NSMutableArray alloc]initWithObjects:myName, nil];
+    for (int i = 0; i < _appDelegate.mcHandler.session.connectedPeers.count; i++){
+        NSString *name = [[_appDelegate.mcHandler.session.connectedPeers objectAtIndex:i]displayName];
+        [buildingConnectedPeersArray addObject:name];
+    }
     
+    NSLog(@"CREATE PLAYERS ARRAY?@?@?@ \n\n %@", buildingConnectedPeersArray);
+    
+    // Make a copy of the mutable array because it does not need to be changed after it's created here
+    NSArray *connectedPeers = [buildingConnectedPeersArray copy];
+    NSLog(@"Connected Peers from copy: %@", connectedPeers);
     return connectedPeers;
 }
 
@@ -142,6 +147,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // if player is the dealer then toGameCollectionVC, else toImagePickerVC
     _game = [[Game alloc] init];
+    
     
     [_game setupGame:[self createPlayersArray]];
     

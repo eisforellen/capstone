@@ -14,4 +14,6 @@
 @property (nonatomic) BOOL isDealer;
 @property (nonatomic) int score;
 
+- (void)setupPlayerWith:(NSString *)name;
+
 @end
