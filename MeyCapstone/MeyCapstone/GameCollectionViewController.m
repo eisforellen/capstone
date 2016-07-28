@@ -29,10 +29,6 @@ static NSString * const reuseIdentifier = @"Cell";
     
     _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-//    for (int i = 0; i < _game.playersArray.count; i++ ) {
-//        NSLog(@"GAME COLLECTION VIEW DID LOAD PLAYERS ARRAY %@\n\n", [[_game.playersArray objectAtIndex:i]name]);
-//    }
-    
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleReceivingDataWithNotification:) name:@"DidReceiveDataNotification" object:nil];
     // AddObserver and Notification for when the above handle is triggered to send a notification back to the sender
@@ -40,9 +36,6 @@ static NSString * const reuseIdentifier = @"Cell";
 
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-//    [self.collectionView reloadData];
-}
 
 - (void)handleReceivingDataWithNotification:(NSNotification *)notification {
     // Handles received notification. Gets the submittedAnswer from the ImagePickerVC and then adds it to an array of submitted answers
@@ -50,9 +43,10 @@ static NSString * const reuseIdentifier = @"Cell";
     
     NSData *receivedData = [userInfo objectForKey:@"data"];
     SubmittedAnswer *submittedAnswer = [NSKeyedUnarchiver unarchiveObjectWithData:receivedData];
-    NSLog(@"Submitted Answer: %@", submittedAnswer);
+    NSLog(@"Submitted Answer on handleReceivingData: %@", submittedAnswer);
     
-    if (submittedAnswer != nil) {
+    // check if the submission is already there, and if we have submissions for each player
+    if (submittedAnswer != nil && ![_arrayOfSubmittedAnswers containsObject:submittedAnswer] && _arrayOfSubmittedAnswers.count < _game.playersArray.count) {
         [_arrayOfSubmittedAnswers addObject:submittedAnswer];
     }
     NSLog(@"Array of Submitted Answers: %@", _arrayOfSubmittedAnswers);

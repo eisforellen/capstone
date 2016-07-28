@@ -59,6 +59,8 @@
         if ([_nameOfWinner isEqualToString:[[_game.playersArray objectAtIndex:i] name]]){
             [_game awardPointToWinner:[_game.playersArray objectAtIndex:i]];
             NSLog(@"WINNER IS %@", [[_game.playersArray objectAtIndex:i] name]);
+            
+            // send notification to update table view for everyone with the new score
         }
     }
     [_tableView reloadData];
