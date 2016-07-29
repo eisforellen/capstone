@@ -34,33 +34,31 @@ static NSString * const reuseIdentifier = @"Cell";
     // AddObserver and Notification for when the above handle is triggered to send a notification back to the sender
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(peersDidReceiveDataWithNotification:) name:@"PeerReceivedDataNotification" object:nil];
     
-    // AddObserver and Notification for when a vote is received before you get to the ScoreViewController
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRecieveScoreUpdateNotificaton:) name:@"DidUpdateScoreNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveScoreFromPeersNotification:) name:@"DidReceiveDataNotification" object:nil];
+    
 
 }
-- (void)didRecieveScoreUpdateNotificaton:(NSNotification *)notification{
-//    // increment voteCount, if equal to playersCount then calculate winner and update score
+
+- (void)didReceiveScoreFromPeersNotification:(NSNotification *)notification {
+    MCPeerID *peerID = [[notification userInfo] objectForKey:@"peerID"];
+    NSString *voterName = peerID.displayName;
     NSDictionary *userInfo = [notification userInfo];
     
-    NSString *nameOfWinner = [userInfo objectForKey:@"selectedSubmissionName"];
-    NSString *me = [userInfo objectForKey:@"myPeerID"];
-    NSLog(@"\nName Of Winner in GCView is: %@", nameOfWinner);
-    if ([[_appDelegate.mcHandler.session.myPeerID displayName] isEqualToString:me]) {
-        NSLog(@"JUST ME DONT VOTE");
-    } else {
-        if (_game.totalVoteCount < _game.playersArray.count) {
-            for (int i = 0; i < _game.playersArray.count; i++) {
-                if ([_selectedSubmissionName isEqualToString:[[_game.playersArray objectAtIndex:i] name]]){
-                    [_game addVotesReceived:[_game.playersArray objectAtIndex:i]];
-                    _game.totalVoteCount ++;
-                    NSLog(@"IN GAMECVC A vote was added, vote count is now: %i", _game.totalVoteCount);
-                }
-            }
+    NSData *receivedData = [[notification userInfo] objectForKey:@"data"];
+    NSString *nameOfPersonWhoWasVotedFor = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
+    NSLog(@"\n\n!!!!!!!! didReceiveScoreFromPeers");
+    
+    for (int i = 0; i < _game.playersArray.count; i++) {
+        if ([nameOfPersonWhoWasVotedFor isEqualToString:[[_game.playersArray objectAtIndex:i] name]]){
+            [_game addVotesReceived:[_game.playersArray objectAtIndex:i]];
+            _game.totalVoteCount ++;
+            NSLog(@"A vote was added, vote count is now: %i", _game.totalVoteCount);
         }
     }
-    NSLog(@"\n ....THIS didReceiveScoreUpdateNotification called in GameCollectionView \n");
+    
 }
 
+#pragma mark - Handlers for Notifications for Passing Around Images and Populating Collection View
 
 - (void)handleReceivingDataWithNotification:(NSNotification *)notification {
     // Handles received notification. Gets the submittedAnswer from the ImagePickerVC and then adds it to an array of submitted answers
@@ -100,16 +98,29 @@ static NSString * const reuseIdentifier = @"Cell";
     // Dispose of any resources that can be recreated.
 }
 
+// Send vote as data to peers
+
+- (void)sendVoteToPeers{
+    NSData *dataToSend = [_selectedSubmissionName dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    
+    [_appDelegate.mcHandler.session sendData:dataToSend
+                                     toPeers:_appDelegate.mcHandler.session.connectedPeers
+                                    withMode:MCSessionSendDataReliable
+                                       error:&error];
+    if (error) {
+        NSLog(@"Error sending vote: %@", [error localizedDescription]);
+    }
+    NSLog(@"Vote sent to peers from GameVC");
+    
+}
+
 
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // send notification to peers that the score was updated
-    NSDictionary *userInfo = @{@"selectedSubmissionName" : _selectedSubmissionName,
-                               @"myPeerID" : [_appDelegate.mcHandler.session.myPeerID displayName]};
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"DidUpdateScoreNotification" object:nil userInfo:userInfo];
-    });
+    [self sendVoteToPeers];
     ScoreViewController *vc = [segue destinationViewController];
     vc.game = _game;
     vc.game.playersArray = _game.playersArray;
