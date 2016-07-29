@@ -14,9 +14,11 @@
 @property (nonatomic, strong) NSMutableArray *playersArray;
 @property (nonatomic, strong) NSArray *promptsArray;
 @property (nonatomic) int turnCount;
+@property (nonatomic) int totalVoteCount;
 
 - (void)setupGame:(NSArray *)connectedPeers;
 - (void)awardPointToWinner:(Player *)player;
+- (void)addVotesReceived:(Player *)player;
 
 
 @end

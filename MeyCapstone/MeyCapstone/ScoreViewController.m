@@ -20,20 +20,68 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-        for (int i = 0; i < _game.playersArray.count; i++ ) {
-            NSLog(@"scoreVIEW DID LOAD PLAYERS ARRAY %@\n\n", [[_game.playersArray objectAtIndex:i]name]);
-        }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveScoreFromPeersNotification:) name:@"DidReceiveDataNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(peersDidReceiveDataWithNotification:) name:@"PeerReceivedScoreNotification" object:nil];
 
+    [self addVotesToPlayer];
+    [_tableView reloadData];
     
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    [self awardPointToWinner];
+- (void)didReceiveScoreFromPeersNotification:(NSNotification *)notification {
+//    MCPeerID *peerID = [[notification userInfo] objectForKey:@"peerID"];
+//    NSString *voterName = peerID.displayName;
+    NSDictionary *userInfo = [notification userInfo];
+    
+    NSData *receivedData = [[notification userInfo] objectForKey:@"data"];
+    NSString *nameOfPersonWhoWasVotedFor = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
+    NSLog(@"\n\n!!!!!!!! didReceiveScoreFromPeers");
+    if (_game.totalVoteCount < _game.playersArray.count) {
+        for (int i = 0; i < _game.playersArray.count; i++) {
+            if ([nameOfPersonWhoWasVotedFor isEqualToString:[[_game.playersArray objectAtIndex:i] name]]){
+                [_game addVotesReceived:[_game.playersArray objectAtIndex:i]];
+                _game.totalVoteCount ++;
+                NSLog(@"A vote was added, vote count is now: %i", _game.totalVoteCount);
+            }
+        }
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"PeerReceivedScoreNotification" object:nil userInfo:userInfo];
+        NSLog(@"\nScore View -- Notification was sent via dispath async\n");
+    });
+    [_tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+    // add vote to the person.vote and trigger that the person voted
 }
+
+- (void)peersDidReceiveDataWithNotification:(NSNotification *)notification{
+    // reloadData for sender
+    NSLog(@"SCORE VIEW -- peersDidReceiveDataWithNotification called \n\n");
+    [_tableView reloadData];
+    
+}
+
+- (void)addVotesToPlayer{
+    // check to see who won, compare sender of pick to current players if equal add 1 to score
+    if (_game.totalVoteCount < _game.playersArray.count) {
+        for (int i = 0; i < _game.playersArray.count; i++) {
+            if ([_nameOfWinner isEqualToString:[[_game.playersArray objectAtIndex:i] name]]){
+                [_game addVotesReceived:[_game.playersArray objectAtIndex:i]];
+                _game.totalVoteCount ++;
+                NSLog(@"A vote was added, vote count is now: %i", _game.totalVoteCount);
+            }
+        }
+    }
+    if (_game.totalVoteCount >= _game.playersArray.count) {
+        NSLog(@"THE GAME IS OVER WE HAVE A WEINER!");
+    }
+    
+    [_tableView reloadData];
+}
+
+#pragma mark - Table View Setup
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [_game.playersArray count];
@@ -47,25 +95,16 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     
     cell.textLabel.text = [[_game.playersArray objectAtIndex:indexPath.row] name];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%i", [[_game.playersArray objectAtIndex:indexPath.row] score]];
+    //change to score once votes are debugged
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%i", [[_game.playersArray objectAtIndex:indexPath.row] votesReceived]];
     
     
     return cell;
 }
 
-- (void)awardPointToWinner{
-    // check to see who won, compare sender of pick to current players if equal add 1 to score
-    for (int i = 0; i < _game.playersArray.count; i++) {
-        if ([_nameOfWinner isEqualToString:[[_game.playersArray objectAtIndex:i] name]]){
-            [_game awardPointToWinner:[_game.playersArray objectAtIndex:i]];
-            NSLog(@"WINNER IS %@", [[_game.playersArray objectAtIndex:i] name]);
-            
-            // send notification to update table view for everyone with the new score
-        }
-    }
-    [_tableView reloadData];
-    
-}
+
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

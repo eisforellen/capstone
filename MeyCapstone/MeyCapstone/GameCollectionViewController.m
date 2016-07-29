@@ -16,7 +16,7 @@
 @interface GameCollectionViewController ()
 
 @property (nonatomic, strong) AppDelegate *appDelegate;
-@property (nonatomic, strong) NSString *selectedWinnerName;
+@property (nonatomic, strong) NSString *selectedSubmissionName;
 
 @end
 
@@ -33,9 +33,32 @@ static NSString * const reuseIdentifier = @"Cell";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleReceivingDataWithNotification:) name:@"DidReceiveDataNotification" object:nil];
     // AddObserver and Notification for when the above handle is triggered to send a notification back to the sender
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(peersDidReceiveDataWithNotification:) name:@"PeerReceivedDataNotification" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveScoreFromPeersNotification:) name:@"DidReceiveDataNotification" object:nil];
+    
 
 }
 
+- (void)didReceiveScoreFromPeersNotification:(NSNotification *)notification {
+    MCPeerID *peerID = [[notification userInfo] objectForKey:@"peerID"];
+    NSString *voterName = peerID.displayName;
+    NSDictionary *userInfo = [notification userInfo];
+    
+    NSData *receivedData = [[notification userInfo] objectForKey:@"data"];
+    NSString *nameOfPersonWhoWasVotedFor = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
+    NSLog(@"\n\n!!!!!!!! didReceiveScoreFromPeers");
+    
+    for (int i = 0; i < _game.playersArray.count; i++) {
+        if ([nameOfPersonWhoWasVotedFor isEqualToString:[[_game.playersArray objectAtIndex:i] name]]){
+            [_game addVotesReceived:[_game.playersArray objectAtIndex:i]];
+            _game.totalVoteCount ++;
+            NSLog(@"A vote was added, vote count is now: %i", _game.totalVoteCount);
+        }
+    }
+    
+}
+
+#pragma mark - Handlers for Notifications for Passing Around Images and Populating Collection View
 
 - (void)handleReceivingDataWithNotification:(NSNotification *)notification {
     // Handles received notification. Gets the submittedAnswer from the ImagePickerVC and then adds it to an array of submitted answers
@@ -45,7 +68,7 @@ static NSString * const reuseIdentifier = @"Cell";
     SubmittedAnswer *submittedAnswer = [NSKeyedUnarchiver unarchiveObjectWithData:receivedData];
     NSLog(@"Submitted Answer on handleReceivingData: %@", submittedAnswer);
     
-    // check if the submission is already there, and if we have submissions for each player
+    // check if the submission is already there and submission count matches player count
     if (submittedAnswer != nil && ![_arrayOfSubmittedAnswers containsObject:submittedAnswer] && _arrayOfSubmittedAnswers.count < _game.playersArray.count) {
         [_arrayOfSubmittedAnswers addObject:submittedAnswer];
     }
@@ -75,18 +98,37 @@ static NSString * const reuseIdentifier = @"Cell";
     // Dispose of any resources that can be recreated.
 }
 
+// Send vote as data to peers
+
+- (void)sendVoteToPeers{
+    NSData *dataToSend = [_selectedSubmissionName dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    
+    [_appDelegate.mcHandler.session sendData:dataToSend
+                                     toPeers:_appDelegate.mcHandler.session.connectedPeers
+                                    withMode:MCSessionSendDataReliable
+                                       error:&error];
+    if (error) {
+        NSLog(@"Error sending vote: %@", [error localizedDescription]);
+    }
+    NSLog(@"Vote sent to peers from GameVC");
+    
+}
+
 
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // send notification to peers that the score was updated
+    [self sendVoteToPeers];
     ScoreViewController *vc = [segue destinationViewController];
     vc.game = _game;
     vc.game.playersArray = _game.playersArray;
-    vc.nameOfWinner = _selectedWinnerName;
+    vc.nameOfWinner = _selectedSubmissionName;
 }
 
 - (IBAction)pickWinnerButtonClicked:(id)sender {
-    // Add functionality for what happens when a winner is selected
+
 }
 
 
@@ -98,7 +140,6 @@ static NSString * const reuseIdentifier = @"Cell";
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    //return _game.playersArray.count;
     return _arrayOfSubmittedAnswers.count;
 }
 
@@ -116,8 +157,8 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     // capture the sender of the image that is selected and transfer that via segue to score vc
-    _selectedWinnerName = [[_arrayOfSubmittedAnswers objectAtIndex:indexPath.row] sender];
-    NSLog(@"\n\nSelectedWinnerName from sender is %@", _selectedWinnerName);
+    _selectedSubmissionName = [[_arrayOfSubmittedAnswers objectAtIndex:indexPath.row] sender];
+    NSLog(@"\n\nSelectedWinnerName from sender is %@", _selectedSubmissionName);
     
 }
 

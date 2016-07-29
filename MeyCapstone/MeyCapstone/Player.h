@@ -11,9 +11,12 @@
 @interface Player : NSObject
 
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic) BOOL isDealer;
+@property (nonatomic) BOOL voted;
 @property (nonatomic) int score;
+@property (nonatomic) int votesReceived;
 
 - (void)setupPlayerWith:(NSString *)name;
+
+- (Player *)getMe;
 
 @end
