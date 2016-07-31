@@ -14,6 +14,7 @@
 
 @property (strong, nonatomic) AppDelegate *appDelegate;
 @property (strong, nonatomic) NSMutableArray *arrayOfAnswersSubmittedBeforeMine;
+@property (strong, nonatomic) IBOutlet UILabel *promptLabel;
 
 @end
 
@@ -28,6 +29,11 @@
     _arrayOfAnswersSubmittedBeforeMine = [[NSMutableArray alloc] init];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleReceivingDataWithNotification:) name:@"DidReceiveDataNotification" object:nil];
     
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    // populate label based on the turn
+    _promptLabel.text = [_game.promptsArray objectAtIndex:_game.turnCount];
 }
 
 - (void)handleReceivingDataWithNotification:(NSNotification *)notification {

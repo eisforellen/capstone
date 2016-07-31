@@ -22,6 +22,7 @@
 		4286D7A81D46769E009C5947 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 4286D7A71D46769E009C5947 /* Game.m */; };
 		4286D7AB1D467727009C5947 /* SubmittedAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4286D7AA1D467727009C5947 /* SubmittedAnswer.m */; };
 		4286D7AE1D490178009C5947 /* ScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4286D7AD1D490178009C5947 /* ScoreViewController.m */; };
+		42DCEC241D4E591C005FB09B /* GameCollectionHeaderViewCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42DCEC231D4E591C005FB09B /* GameCollectionHeaderViewCollectionReusableView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,8 @@
 		4286D7AA1D467727009C5947 /* SubmittedAnswer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubmittedAnswer.m; sourceTree = "<group>"; };
 		4286D7AC1D490178009C5947 /* ScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreViewController.h; sourceTree = "<group>"; };
 		4286D7AD1D490178009C5947 /* ScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreViewController.m; sourceTree = "<group>"; };
+		42DCEC221D4E591C005FB09B /* GameCollectionHeaderViewCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCollectionHeaderViewCollectionReusableView.h; sourceTree = "<group>"; };
+		42DCEC231D4E591C005FB09B /* GameCollectionHeaderViewCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCollectionHeaderViewCollectionReusableView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +134,8 @@
 				4286D7A01D466258009C5947 /* ImagePickerViewController.m */,
 				4286D7AC1D490178009C5947 /* ScoreViewController.h */,
 				4286D7AD1D490178009C5947 /* ScoreViewController.m */,
+				42DCEC221D4E591C005FB09B /* GameCollectionHeaderViewCollectionReusableView.h */,
+				42DCEC231D4E591C005FB09B /* GameCollectionHeaderViewCollectionReusableView.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -222,6 +227,7 @@
 				4286D7781D4298DB009C5947 /* GameCollectionViewController.m in Sources */,
 				4286D6FA1D411CE4009C5947 /* ConnectionsViewController.m in Sources */,
 				4286D6F51D4118AA009C5947 /* MCHandler.m in Sources */,
+				42DCEC241D4E591C005FB09B /* GameCollectionHeaderViewCollectionReusableView.m in Sources */,
 				4286D7AE1D490178009C5947 /* ScoreViewController.m in Sources */,
 				4286D7AB1D467727009C5947 /* SubmittedAnswer.m in Sources */,
 				4286D6E41D4117F7009C5947 /* ViewController.m in Sources */,
