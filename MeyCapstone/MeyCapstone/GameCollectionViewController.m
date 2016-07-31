@@ -36,12 +36,14 @@ static NSString * const reuseIdentifier = @"Cell";
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveScoreFromPeersNotification:) name:@"DidReceiveDataNotification" object:nil];
     
+    
 
 }
 
 - (void)didReceiveScoreFromPeersNotification:(NSNotification *)notification {
     MCPeerID *peerID = [[notification userInfo] objectForKey:@"peerID"];
     NSString *voterName = peerID.displayName;
+    // Player *voter = [_game.playersArray objectForKey @"voterName"] -- something like that, then flag that they voted
     NSDictionary *userInfo = [notification userInfo];
     
     NSData *receivedData = [[notification userInfo] objectForKey:@"data"];
