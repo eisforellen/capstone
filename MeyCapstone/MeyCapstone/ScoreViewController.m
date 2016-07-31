@@ -57,8 +57,9 @@
 }
 
 - (void)peersDidReceiveDataWithNotification:(NSNotification *)notification{
-    // reloadData for sender
+    // reloadData for sender and declare winner if needed
     NSLog(@"SCORE VIEW -- peersDidReceiveDataWithNotification called \n\n");
+    [self declareWinner];
     [_tableView reloadData];
     
 }
@@ -74,11 +75,35 @@
             }
         }
     }
-    if (_game.totalVoteCount >= _game.playersArray.count) {
-        NSLog(@"THE GAME IS OVER WE HAVE A WEINER!");
-    }
+    [self declareWinner];
     
     [_tableView reloadData];
+}
+
+- (NSArray *)sortPlayersByVotes{
+    NSLog(@"Players array before sort: %@", _game.playersArray);
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"votesReceived" ascending:NO];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    NSArray *playersSortedByVotesReceived = [_game.playersArray sortedArrayUsingDescriptors:sortDescriptors];
+    NSLog(@"Sorted Players Array by Vote: %@", playersSortedByVotesReceived);
+    return playersSortedByVotesReceived;
+}
+
+- (void)awardPointToWinner:(NSArray *)sortedArray{
+    if ([sortedArray[0] votesReceived] > [sortedArray[1] votesReceived]){
+        NSLog(@"Player %@ is the winner!", [sortedArray[0] name]);
+    } else {
+        NSLog(@"It's a tie!");
+    }
+}
+
+- (void)declareWinner{
+    if (_game.totalVoteCount >= _game.playersArray.count) {
+        NSLog(@"THE GAME IS OVER WE HAVE A WEINER!");
+        [self awardPointToWinner:[self sortPlayersByVotes]];
+    } else {
+        NSLog(@"No winner yet");
+    }
 }
 
 #pragma mark - Table View Setup
