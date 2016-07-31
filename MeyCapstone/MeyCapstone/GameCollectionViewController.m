@@ -8,6 +8,7 @@
 
 #import "GameCollectionViewController.h"
 #import "GameCollectionViewCell.h"
+#import "GameCollectionHeaderViewCollectionReusableView.h"
 #import "AppDelegate.h"
 #import "SubmittedAnswer.h"
 #import "ScoreViewController.h"
@@ -35,10 +36,10 @@ static NSString * const reuseIdentifier = @"Cell";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(peersDidReceiveDataWithNotification:) name:@"PeerReceivedDataNotification" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveScoreFromPeersNotification:) name:@"DidReceiveDataNotification" object:nil];
-    
-    
 
 }
+
+
 
 - (void)didReceiveScoreFromPeersNotification:(NSNotification *)notification {
     MCPeerID *peerID = [[notification userInfo] objectForKey:@"peerID"];
@@ -149,7 +150,7 @@ static NSString * const reuseIdentifier = @"Cell";
     GameCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     // Configure the cell
-    
+    // remove this label for anonymity of senders
     cell.label.text = [[_arrayOfSubmittedAnswers objectAtIndex:indexPath.row] sender];
     cell.image.image = [[_arrayOfSubmittedAnswers objectAtIndex:indexPath.row] submittedImage];
     
@@ -162,6 +163,19 @@ static NSString * const reuseIdentifier = @"Cell";
     _selectedSubmissionName = [[_arrayOfSubmittedAnswers objectAtIndex:indexPath.row] sender];
     NSLog(@"\n\nSelectedWinnerName from sender is %@", _selectedSubmissionName);
     
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+    UICollectionReusableView *reusableView = nil;
+    
+    if (kind == UICollectionElementKindSectionHeader) {
+        GameCollectionHeaderViewCollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
+        [headerView setPromptLabel:[_game.promptsArray objectAtIndex:_game.turnCount]];
+        
+        reusableView = headerView;
+    }
+    
+    return reusableView;
 }
 
 #pragma mark <UICollectionViewDelegate>

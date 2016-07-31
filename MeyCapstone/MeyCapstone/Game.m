@@ -27,7 +27,7 @@
     
     
     // TODO randomize prompts array
-    _promptsArray = @[@"This taco is ______", @"You may already be a ______", @"The worst thing I ever ate was _______", @"______, that's what he said!"];
+    _promptsArray = @[@"This award for best poker face goes to...", @"You may already be a ______", @"The worst thing I ever ate was _______", @"______, that's what he said!"];
     _turnCount = 0;
     _totalVoteCount = 0;
 }
