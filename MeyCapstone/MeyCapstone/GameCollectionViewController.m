@@ -30,6 +30,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
+    self.view.backgroundColor = [UIColor whiteColor];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleReceivingDataWithNotification:) name:@"DidReceiveDataNotification" object:nil];
     // AddObserver and Notification for when the above handle is triggered to send a notification back to the sender

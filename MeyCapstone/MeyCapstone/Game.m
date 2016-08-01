@@ -33,7 +33,9 @@
 }
 
 - (void)awardPoint:(Player *)player{
+    NSLog(@"Player's add score ++++++++++++++++++++++++++++++\n");
     player.score ++;
+    
 }
 
 - (void)addVotesReceived:(Player *)player{

@@ -17,6 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     _mcHandler = [[MCHandler alloc] init];
+    [self.window setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"backgroundPattern"]]];
     return YES;
 }
 

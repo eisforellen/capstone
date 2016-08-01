@@ -74,7 +74,7 @@
 
 - (void)addVotesToPlayer{
     // check to see who won, compare sender of pick to current players if equal add 1 to score
-    if (_game.totalVoteCount < _game.playersArray.count) {
+    if (_game.totalVoteCount < _game.playersArray.count && !_roundIsOver) {
         for (int i = 0; i < _game.playersArray.count; i++) {
             if ([_nameOfWinner isEqualToString:[[_game.playersArray objectAtIndex:i] name]]){
                 [_game addVotesReceived:[_game.playersArray objectAtIndex:i]];
@@ -181,7 +181,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     _game.turnCount ++;
-    _roundIsOver = NO;
+    
     [self clearAllVotes];
     
     // if the turn count is less than the number of prompts available the person clicks next round, then take them to the image picker
