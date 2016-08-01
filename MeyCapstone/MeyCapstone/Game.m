@@ -27,12 +27,12 @@
     
     
     // TODO randomize prompts array
-    _promptsArray = @[@"This award for best poker face goes to...", @"You may already be a ______", @"The worst thing I ever ate was _______", @"______, that's what he said!"];
+    _promptsArray = @[@"The Oscar for best impression of Marlon Brando underwater goes to...", @"Voted most likely to visit the moon in high school", @"If I could live anywhere, I'd choose", @"Did you know My Sharona was really about"];
     _turnCount = 0;
     _totalVoteCount = 0;
 }
 
-- (void)awardPointToWinner:(Player *)player{
+- (void)awardPoint:(Player *)player{
     player.score ++;
 }
 

@@ -17,7 +17,7 @@
 @property (nonatomic) int totalVoteCount;
 
 - (void)setupGame:(NSArray *)connectedPeers;
-- (void)awardPointToWinner:(Player *)player;
+- (void)awardPoint:(Player *)player;
 - (void)addVotesReceived:(Player *)player;
 
 

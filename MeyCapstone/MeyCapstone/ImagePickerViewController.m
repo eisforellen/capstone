@@ -102,7 +102,7 @@
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // creates SubmittedAnswer object that will take the current image and username and send it as NSData via notification to the GameCVC
-    NSLog(@"PLAYERS ARRAY ON IMAGE PICKER IS: %@", _game.playersArray);
+    NSLog(@"Game vote count %i on imagePicker", _game.totalVoteCount);
     
     SubmittedAnswer *submission = [[SubmittedAnswer alloc] init];
     submission.submittedImage = _imageView.image;
