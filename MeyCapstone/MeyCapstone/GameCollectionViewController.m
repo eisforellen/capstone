@@ -129,6 +129,7 @@ static NSString * const reuseIdentifier = @"Cell";
     vc.game = _game;
     vc.game.playersArray = _game.playersArray;
     vc.nameOfWinner = _selectedSubmissionName;
+    [vc.tableView reloadData];
 }
 
 - (IBAction)pickWinnerButtonClicked:(id)sender {
