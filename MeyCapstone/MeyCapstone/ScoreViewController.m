@@ -8,6 +8,8 @@
 
 #import "ScoreViewController.h"
 #import "AppDelegate.h"
+#import "ImagePickerViewController.h"
+#import "ConnectionsViewController.h"
 
 
 @interface ScoreViewController ()
@@ -93,11 +95,16 @@
 
 // looks at the sorted array, if the first person has the highest score then award them a point, else it's a tie
 - (void)awardPointToWinner:(NSArray *)sortedArray{
-    if ([sortedArray[0] votesReceived] > [sortedArray[1] votesReceived]){
-        NSLog(@"Player %@ is the winner!", [sortedArray[0] name]);
-        [_game awardPointToWinner:[sortedArray objectAtIndex:0]];
+    if (_game.playersArray.count > 1) {
+        if ([sortedArray[0] votesReceived] > [sortedArray[1] votesReceived]){
+            // add alert that says this
+            NSLog(@"Player %@ is the winner!", [sortedArray[0] name]);
+            [_game awardPointToWinner:[sortedArray objectAtIndex:0]];
+        } else {
+            NSLog(@"It's a tie!");
+        }
     } else {
-        NSLog(@"It's a tie!");
+        NSLog(@"there is only one player");
     }
 }
 
@@ -145,14 +152,26 @@
 
 
 
-/*
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    _game.turnCount ++;
+    
+    // if the turn count is less than the number of prompts available the person clicks next round, then take them to the image picker
+    if (_game.turnCount < _game.promptsArray.count && [[segue identifier] isEqualToString:@"toImagePicker"]){
+        ImagePickerViewController *vc = [segue destinationViewController];
+        vc.game = _game;
+        vc.game.turnCount = _game.turnCount;
+    }else { // end the game
+        _game.turnCount = 0;
+        ConnectionsViewController *vc = [segue destinationViewController];
+        vc.game = _game;
+        
+    }
+    
 }
-*/
+
 
 @end
