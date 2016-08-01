@@ -16,6 +16,8 @@
 
 @property (strong, nonatomic) AppDelegate *appDelegate;
 
+@property (nonatomic) BOOL roundIsOver;
+
 @end
 
 @implementation ScoreViewController
@@ -31,6 +33,10 @@
     [self addVotesToPlayer];
     [_tableView reloadData];
     
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    _roundIsOver = NO;
 }
 
 - (void)didReceiveScoreFromPeersNotification:(NSNotification *)notification {
@@ -95,28 +101,45 @@
 
 // looks at the sorted array, if the first person has the highest score then award them a point, else it's a tie
 - (void)awardPointToWinner:(NSArray *)sortedArray{
-    if (_game.playersArray.count > 1) {
-        if ([sortedArray[0] votesReceived] > [sortedArray[1] votesReceived]){
-            // add alert that says this
-            NSLog(@"Player %@ is the winner!", [sortedArray[0] name]);
-            [_game awardPointToWinner:[sortedArray objectAtIndex:0]];
+    if (!_roundIsOver){
+        if (_game.playersArray.count > 1) {
+            if ([sortedArray[0] votesReceived] > [sortedArray[1] votesReceived]){
+                // add alert that says this
+                NSLog(@"Player %@ is the winner!", [sortedArray[0] name]);
+                [_game awardPoint:[sortedArray objectAtIndex:0]];
+                _roundIsOver = YES;
+            } else {
+                NSLog(@"It's a tie!");
+            }
         } else {
-            NSLog(@"It's a tie!");
+            NSLog(@"there is only one player");
         }
-    } else {
-        NSLog(@"there is only one player");
     }
 }
 
 // if we have all the votes in, tally them, sort them and award a point to the winner
 - (void)declareWinner{
-    if (_game.totalVoteCount >= _game.playersArray.count) {
-        NSLog(@"THE GAME IS OVER WE HAVE A WEINER!");
-        [self awardPointToWinner:[self sortPlayersByVotes]];
-        [_tableView reloadData];
+    if (!_roundIsOver){
+        if (_game.totalVoteCount >= _game.playersArray.count) {
+            NSLog(@"THE GAME IS OVER WE HAVE A WEINER!");
+            [self awardPointToWinner:[self sortPlayersByVotes]];
+            [_tableView reloadData];
+            _roundIsOver = YES;
+        } else {
+            NSLog(@"No winner yet");
+        }
     } else {
-        NSLog(@"No winner yet");
+        NSLog(@"decalreWinner called but round is over\n");
     }
+}
+
+- (void)clearAllVotes{
+    for (Player *player in _game.playersArray){
+        player.votesReceived = 0;
+        player.voted = NO;
+    }
+    _game.totalVoteCount = 0;
+    
 }
 
 #pragma mark - Table View Setup
@@ -158,17 +181,25 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     _game.turnCount ++;
+    _roundIsOver = NO;
+    [self clearAllVotes];
     
     // if the turn count is less than the number of prompts available the person clicks next round, then take them to the image picker
     if (_game.turnCount < _game.promptsArray.count && [[segue identifier] isEqualToString:@"toImagePicker"]){
         ImagePickerViewController *vc = [segue destinationViewController];
         vc.game = _game;
         vc.game.turnCount = _game.turnCount;
-    }else { // end the game
-        _game.turnCount = 0;
-        ConnectionsViewController *vc = [segue destinationViewController];
-        vc.game = _game;
-        
+        vc.game.totalVoteCount = _game.totalVoteCount;
+    } else if ([[segue identifier] isEqualToString:@"toImagePicker"]){
+        // end game alert, display winner and then restart the game alert self perform segue with identifier toConnectionsView
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Game Over" message:@"The winner is:" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *playAgain = [UIAlertAction actionWithTitle:@"Play Again" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self performSegueWithIdentifier:@"toConnectionsView" sender:self];
+        }];
+        [alert addAction:playAgain];
+        [self presentViewController:alert animated:YES completion:nil];
+    } else {
+        // restart the game, return to connection view
     }
     
 }

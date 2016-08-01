@@ -17,6 +17,6 @@
 
 - (void)setupPlayerWith:(NSString *)name;
 
-- (Player *)getMe;
+
 
 @end

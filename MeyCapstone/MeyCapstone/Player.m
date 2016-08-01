@@ -19,9 +19,6 @@
     _votesReceived = 0;
 }
 
-//- (Player *)getMe{
-//    return
-//}
 
 
 @end
