@@ -364,7 +364,7 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ccm-HW-XcS">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ccm-HW-XcS">
                                 <rect key="frame" x="64" y="134" width="193" height="341"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -402,15 +402,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Qpy-Vs-IPd" firstAttribute="leading" secondItem="Ldh-cU-fhA" secondAttribute="leadingMargin" id="2kv-pi-SNG"/>
-                            <constraint firstItem="Ccm-HW-XcS" firstAttribute="top" secondItem="OMp-Ps-FKb" secondAttribute="bottom" constant="19" id="avo-IW-Ko1"/>
-                            <constraint firstItem="OMp-Ps-FKb" firstAttribute="centerX" secondItem="Ldh-cU-fhA" secondAttribute="centerX" id="cYf-5a-Lyu"/>
-                            <constraint firstItem="yjx-UO-jkg" firstAttribute="top" secondItem="Ccm-HW-XcS" secondAttribute="bottom" constant="34" id="cgB-fE-Mo1"/>
-                            <constraint firstItem="Ccm-HW-XcS" firstAttribute="centerX" secondItem="Ldh-cU-fhA" secondAttribute="centerX" id="p3i-cj-VBZ"/>
-                            <constraint firstItem="OMp-Ps-FKb" firstAttribute="top" secondItem="JUb-A8-yFc" secondAttribute="bottom" constant="58" id="rwu-s9-2GW"/>
-                            <constraint firstItem="RZx-bS-Nw9" firstAttribute="top" secondItem="Qpy-Vs-IPd" secondAttribute="bottom" constant="21" id="sWp-1c-oAF"/>
-                            <constraint firstItem="RZx-bS-Nw9" firstAttribute="top" secondItem="yjx-UO-jkg" secondAttribute="bottom" constant="20" id="ujG-j1-ErA"/>
-                            <constraint firstItem="yjx-UO-jkg" firstAttribute="trailing" secondItem="Ldh-cU-fhA" secondAttribute="trailingMargin" id="x5S-7s-Jtv"/>
+                            <constraint firstItem="Qpy-Vs-IPd" firstAttribute="baseline" secondItem="yjx-UO-jkg" secondAttribute="baseline" id="Cuj-KK-GNP"/>
+                            <constraint firstItem="Ccm-HW-XcS" firstAttribute="top" secondItem="OMp-Ps-FKb" secondAttribute="bottom" constant="19" id="Jtj-gQ-TqW"/>
+                            <constraint firstItem="yjx-UO-jkg" firstAttribute="top" secondItem="Ccm-HW-XcS" secondAttribute="bottom" constant="35" id="LDt-lL-58h"/>
+                            <constraint firstItem="yjx-UO-jkg" firstAttribute="trailing" secondItem="Ldh-cU-fhA" secondAttribute="trailingMargin" id="SY7-15-6zU"/>
+                            <constraint firstItem="OMp-Ps-FKb" firstAttribute="centerX" secondItem="Ldh-cU-fhA" secondAttribute="centerX" id="a5Z-WE-AeI"/>
+                            <constraint firstAttribute="bottom" secondItem="yjx-UO-jkg" secondAttribute="bottom" constant="20" symbolic="YES" id="aYY-HL-mfb"/>
+                            <constraint firstItem="OMp-Ps-FKb" firstAttribute="centerX" secondItem="Ccm-HW-XcS" secondAttribute="centerX" id="bcH-4Z-I4S"/>
+                            <constraint firstItem="Ccm-HW-XcS" firstAttribute="leading" secondItem="Ldh-cU-fhA" secondAttribute="leadingMargin" constant="48" id="kLd-sn-AIa"/>
+                            <constraint firstItem="OMp-Ps-FKb" firstAttribute="top" secondItem="JUb-A8-yFc" secondAttribute="bottom" constant="58" id="oT3-ax-zSK"/>
+                            <constraint firstItem="Qpy-Vs-IPd" firstAttribute="leading" secondItem="Ldh-cU-fhA" secondAttribute="leadingMargin" id="q8X-68-Gsb"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kUF-o8-fGg"/>
@@ -438,7 +439,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="3dQ-6c-PrA" customClass="GameCollectionViewCell">
-                                <rect key="frame" x="0.0" y="114" width="320" height="320"/>
+                                <rect key="frame" x="0.0" y="50" width="320" height="320"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
@@ -464,7 +465,7 @@
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HeaderView" id="whX-bN-eJP" customClass="GameCollectionHeaderViewCollectionReusableView">
-                            <rect key="frame" x="0.0" y="64" width="320" height="50"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Prompt" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YqT-J3-Khr">
@@ -516,7 +517,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="klN-fs-5Kl"/>
-        <segue reference="07g-AE-VQP"/>
+        <segue reference="gtp-we-yMR"/>
+        <segue reference="Bod-OD-9OC"/>
     </inferredMetricsTieBreakers>
 </document>

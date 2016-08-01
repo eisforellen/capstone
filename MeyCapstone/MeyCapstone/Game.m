@@ -42,4 +42,82 @@
     player.votesReceived ++;
 }
 
+- (NSArray *)sortPlayersByVotes{
+    NSLog(@"Players array before sort: %@", _playersArray);
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"votesReceived" ascending:NO];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    NSArray *playersSortedByVotesReceived = [_playersArray sortedArrayUsingDescriptors:sortDescriptors];
+    NSLog(@"Sorted Players Array by Vote: %@", playersSortedByVotesReceived);
+    return playersSortedByVotesReceived;
+}
+
+- (void)clearAllVotes{
+    for (Player *player in _playersArray){
+        player.votesReceived = 0;
+        player.voted = NO;
+    }
+    _totalVoteCount = 0;
+    
+}
+
+- (BOOL)readyToAwardPoints{
+    if (_totalVoteCount >= _playersArray.count) {
+        NSLog(@"ready to award points");
+        return true;
+    } else {
+        NSLog(@"Womp womp ----------------------");
+        return false;
+    }
+}
+
+
+- (void)addVotesToPlayer:(NSString *)nameOfWinner{
+    // check to see who won, compare sender of pick to current players if equal add 1 to score
+// if game is not ready to award points
+        if (![self readyToAwardPoints]) {
+            for (int i = 0; i < _playersArray.count; i++) {
+                if ([nameOfWinner isEqualToString:[[_playersArray objectAtIndex:i] name]]){
+                    [self addVotesReceived:[_playersArray objectAtIndex:i]];
+                    _totalVoteCount ++;
+                    NSLog(@"A vote was added, vote count is now: %i", _totalVoteCount);
+                }
+            }
+        } else {
+            [self declareWinner];
+        }
+    
+}
+
+
+// looks at the sorted array, if the first person has the highest score then award them a point, else it's a tie
+- (void)awardPointToWinner:(NSArray *)sortedArray{
+        if (_playersArray.count > 1) {
+            if ([sortedArray[0] votesReceived] > [sortedArray[1] votesReceived]){
+                // add alert that says this
+                NSLog(@"Player %@ is the winner!", [sortedArray[0] name]);
+                [self awardPoint:[sortedArray objectAtIndex:0]];
+            } else {
+                NSLog(@"It's a tie!");
+            }
+        } else {
+            NSLog(@"there is only one player");
+        }
+    }
+
+// if we have all the votes in, tally them, sort them and award a point to the winner
+- (void)declareWinner{
+    if (!_moveOnToNextRound){
+        if ([self readyToAwardPoints]) {
+            NSLog(@"THE GAME IS OVER WE HAVE A WEINER!");
+            [self awardPointToWinner:[self sortPlayersByVotes]];
+            _moveOnToNextRound = YES;
+        } else {
+            NSLog(@"No winner yet");
+        }
+    } else {
+        NSLog(@"declareWinner called but round is over\n");
+    }
+}
+
+
 @end
