@@ -28,7 +28,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="21"/>
                                 <size key="titleShadowOffset" width="1" height="1"/>
-                                <state key="normal" title="Connect">
+                                <state key="normal" title="Start Game">
                                     <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" red="0.36078431370000003" green="0.36470588240000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -78,22 +78,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Player Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v6x-Dd-Mcw">
-                                <rect key="frame" x="32" y="93" width="199" height="30"/>
+                                <rect key="frame" x="32" y="118" width="199" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="v6x-Dd-Mcw" secondAttribute="height" multiplier="199:30" id="wGT-nC-7WA"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="mbO-qZ-R8g">
-                                <rect key="frame" x="70" y="265" width="177" height="174"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="textColor" red="0.0" green="0.70017011330000001" blue="0.75673076920000004" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Visible to Others:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FhJ-du-dPa">
-                                <rect key="frame" x="71" y="129" width="121" height="21"/>
+                                <rect key="frame" x="139" y="418" width="121" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="FhJ-du-dPa" secondAttribute="height" multiplier="121:21" id="xem-p4-D72"/>
                                 </constraints>
@@ -102,63 +95,66 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6XS-KI-OWX">
-                                <rect key="frame" x="226" y="92" width="66" height="33"/>
+                                <rect key="frame" x="224" y="115" width="70" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="6XS-KI-OWX" secondAttribute="height" multiplier="2:1" id="cQG-EF-AUy"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="16"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
                                 <state key="normal" title="Save">
-                                    <color key="titleColor" red="0.0" green="0.70017011330000001" blue="0.75673076920000004" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="savePlayerNameButton:" destination="fdd-Am-djL" eventType="touchUpInside" id="lH0-3a-nGk"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connected Players:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGM-vn-H8J">
-                                <rect key="frame" x="86" y="238" width="149" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connected Players:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGM-vn-H8J">
+                                <rect key="frame" x="82" y="228" width="156" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="lGM-vn-H8J" secondAttribute="height" multiplier="149:21" id="oP3-ZC-eF5"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="15"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xpL-CY-KOs">
-                                <rect key="frame" x="121" y="527" width="78" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xpL-CY-KOs">
+                                <rect key="frame" x="122" y="534" width="75" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="xpL-CY-KOs" secondAttribute="height" multiplier="13:5" id="pfy-c2-e33"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="12"/>
                                 <state key="normal" title="Disconnect">
-                                    <color key="titleColor" red="0.0" green="0.70017011330000001" blue="0.75673076920000004" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.61176470589999998" green="0.97647058819999999" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="disconnectButtonClicked:" destination="fdd-Am-djL" eventType="touchUpInside" id="a1S-Ai-koq"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TFM-Hu-bfL">
-                                <rect key="frame" x="71" y="463" width="179" height="38"/>
+                                <rect key="frame" x="20" y="418" width="280" height="110"/>
                                 <color key="backgroundColor" red="0.45098039215686275" green="0.94901960784313721" blue="0.55294117647058827" alpha="0.60999999999999999" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="179" id="SfP-TH-W3f"/>
-                                    <constraint firstAttribute="width" secondItem="TFM-Hu-bfL" secondAttribute="height" multiplier="179:38" id="f1J-kV-mrc"/>
+                                    <constraint firstAttribute="width" constant="280" id="SfP-TH-W3f"/>
+                                    <constraint firstAttribute="width" secondItem="TFM-Hu-bfL" secondAttribute="height" multiplier="179:38" constant="-238.15789473684208" id="f1J-kV-mrc"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="15"/>
-                                <state key="normal" title="Start Game">
-                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="51"/>
+                                <state key="normal" title="Let's Play">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="startGameButtonClicked:" destination="fdd-Am-djL" eventType="touchUpInside" id="ZzT-nH-0mX"/>
                                     <segue destination="iqB-1N-ffy" kind="push" identifier="toImagePickerVC" id="07g-AE-VQP"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8z6-VP-NZI">
-                                <rect key="frame" x="79" y="171" width="161" height="33"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8z6-VP-NZI">
+                                <rect key="frame" x="65" y="169" width="186.5" height="49"/>
                                 <color key="backgroundColor" red="0.0" green="0.70196078431372544" blue="0.75686274509803919" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="8z6-VP-NZI" secondAttribute="height" multiplier="44:9" id="UFa-5x-p4n"/>
+                                    <constraint firstAttribute="width" secondItem="8z6-VP-NZI" secondAttribute="height" multiplier="44:9" constant="-53.055555555555571" id="UFa-5x-p4n"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="18"/>
                                 <state key="normal" title="Browse for Players">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -166,26 +162,28 @@
                                     <action selector="searchForPlayers:" destination="fdd-Am-djL" eventType="touchUpInside" id="Jzl-kl-hUZ"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="once everyone's connected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FZf-rZ-Pur">
-                                <rect key="frame" x="77" y="448" width="164" height="14"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All connected?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FZf-rZ-Pur">
+                                <rect key="frame" x="42" y="366" width="234" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="FZf-rZ-Pur" secondAttribute="height" multiplier="176:15" id="h7O-vm-XrB"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="10"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="customize your display name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CmO-AO-DvO">
-                                <rect key="frame" x="37" y="77" width="182" height="15"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Your Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CmO-AO-DvO">
+                                <rect key="frame" x="55" y="81" width="209.5" height="26.5"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="CmO-AO-DvO" secondAttribute="height" multiplier="82:7" constant="6.285714285714306" id="JW1-lD-nzK"/>
+                                    <constraint firstAttribute="width" secondItem="CmO-AO-DvO" secondAttribute="height" multiplier="82:7" constant="-101.21428571428572" id="JW1-lD-nzK"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="11"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <size key="shadowOffset" width="0.0" height="1"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Joz-fK-vIF">
-                                <rect key="frame" x="191" y="124" width="51" height="31"/>
+                                <rect key="frame" x="259" y="413" width="51" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Joz-fK-vIF" secondAttribute="height" multiplier="49:31" id="MYR-mk-ntM"/>
                                 </constraints>
@@ -195,32 +193,40 @@
                                     <action selector="toggleVisibility:" destination="fdd-Am-djL" eventType="valueChanged" id="fei-gv-U7S"/>
                                 </connections>
                             </switch>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="mbO-qZ-R8g">
+                                <rect key="frame" x="63" y="249" width="201" height="109"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.45059788909999998" green="0.94863782050000001" blue="0.55277638340000002" alpha="0.60945581900000001" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="TFM-Hu-bfL" firstAttribute="centerY" secondItem="cUm-fB-8EJ" secondAttribute="centerY" constant="198" id="6yz-Kg-Uf3"/>
+                            <constraint firstItem="TFM-Hu-bfL" firstAttribute="centerY" secondItem="cUm-fB-8EJ" secondAttribute="centerY" constant="189" id="6yz-Kg-Uf3"/>
                             <constraint firstItem="6XS-KI-OWX" firstAttribute="centerX" secondItem="cUm-fB-8EJ" secondAttribute="centerX" constant="99" id="BlL-2B-xte"/>
                             <constraint firstItem="FZf-rZ-Pur" firstAttribute="centerX" secondItem="cUm-fB-8EJ" secondAttribute="centerX" constant="-1" id="CCp-jV-dM2"/>
-                            <constraint firstItem="lGM-vn-H8J" firstAttribute="centerY" secondItem="cUm-fB-8EJ" secondAttribute="centerY" constant="-35.5" id="CDJ-9o-g0G"/>
-                            <constraint firstItem="mbO-qZ-R8g" firstAttribute="leading" secondItem="cUm-fB-8EJ" secondAttribute="leadingMargin" constant="54" id="D6z-5d-JpD"/>
-                            <constraint firstItem="CmO-AO-DvO" firstAttribute="centerY" secondItem="cUm-fB-8EJ" secondAttribute="centerY" constant="-200" id="L9Q-bX-meS"/>
-                            <constraint firstItem="FZf-rZ-Pur" firstAttribute="centerY" secondItem="cUm-fB-8EJ" secondAttribute="centerY" constant="170.5" id="Nps-Xe-Cv3"/>
-                            <constraint firstItem="Joz-fK-vIF" firstAttribute="centerX" secondItem="cUm-fB-8EJ" secondAttribute="centerX" constant="55.5" id="OPv-Ax-txv"/>
+                            <constraint firstItem="lGM-vn-H8J" firstAttribute="centerY" secondItem="cUm-fB-8EJ" secondAttribute="centerY" constant="-44.5" id="CDJ-9o-g0G"/>
+                            <constraint firstItem="mbO-qZ-R8g" firstAttribute="leading" secondItem="cUm-fB-8EJ" secondAttribute="leadingMargin" constant="47" id="D6z-5d-JpD"/>
+                            <constraint firstItem="CmO-AO-DvO" firstAttribute="centerY" secondItem="cUm-fB-8EJ" secondAttribute="centerY" constant="-189.25" id="L9Q-bX-meS"/>
+                            <constraint firstItem="FZf-rZ-Pur" firstAttribute="centerY" secondItem="cUm-fB-8EJ" secondAttribute="centerY" constant="92.5" id="Nps-Xe-Cv3"/>
+                            <constraint firstItem="Joz-fK-vIF" firstAttribute="centerX" secondItem="cUm-fB-8EJ" secondAttribute="centerX" constant="123.5" id="OPv-Ax-txv"/>
                             <constraint firstItem="8z6-VP-NZI" firstAttribute="centerX" secondItem="cUm-fB-8EJ" secondAttribute="centerX" constant="-1" id="Q5k-P9-uIj"/>
-                            <constraint firstItem="8z6-VP-NZI" firstAttribute="centerY" secondItem="cUm-fB-8EJ" secondAttribute="centerY" constant="-97" id="R77-Q7-zxR"/>
-                            <constraint firstItem="FhJ-du-dPa" firstAttribute="centerX" secondItem="cUm-fB-8EJ" secondAttribute="centerX" constant="-28.5" id="XYu-S3-ad9"/>
-                            <constraint firstItem="xpL-CY-KOs" firstAttribute="centerY" secondItem="cUm-fB-8EJ" secondAttribute="centerY" constant="258" id="Ywl-o7-diZ"/>
-                            <constraint firstItem="v6x-Dd-Mcw" firstAttribute="centerY" secondItem="cUm-fB-8EJ" secondAttribute="centerY" constant="-176" id="bUL-pv-M8S"/>
+                            <constraint firstItem="8z6-VP-NZI" firstAttribute="centerY" secondItem="cUm-fB-8EJ" secondAttribute="centerY" constant="-90.5" id="R77-Q7-zxR"/>
+                            <constraint firstItem="FhJ-du-dPa" firstAttribute="centerX" secondItem="cUm-fB-8EJ" secondAttribute="centerX" constant="39.5" id="XYu-S3-ad9"/>
+                            <constraint firstItem="xpL-CY-KOs" firstAttribute="centerY" secondItem="cUm-fB-8EJ" secondAttribute="centerY" constant="265" id="Ywl-o7-diZ"/>
+                            <constraint firstItem="v6x-Dd-Mcw" firstAttribute="centerY" secondItem="cUm-fB-8EJ" secondAttribute="centerY" constant="-151" id="bUL-pv-M8S"/>
                             <constraint firstItem="TFM-Hu-bfL" firstAttribute="centerX" secondItem="cUm-fB-8EJ" secondAttribute="centerX" id="ccV-SM-h22"/>
-                            <constraint firstItem="mbO-qZ-R8g" firstAttribute="top" secondItem="lGM-vn-H8J" secondAttribute="bottom" constant="6" id="cci-3k-Pqc"/>
-                            <constraint firstItem="FhJ-du-dPa" firstAttribute="centerY" secondItem="cUm-fB-8EJ" secondAttribute="centerY" constant="-144.5" id="dUM-qR-ESN"/>
+                            <constraint firstItem="mbO-qZ-R8g" firstAttribute="top" secondItem="lGM-vn-H8J" secondAttribute="bottom" constant="-1" id="cci-3k-Pqc"/>
+                            <constraint firstItem="FhJ-du-dPa" firstAttribute="centerY" secondItem="cUm-fB-8EJ" secondAttribute="centerY" constant="144.5" id="dUM-qR-ESN"/>
                             <constraint firstItem="lGM-vn-H8J" firstAttribute="centerX" secondItem="cUm-fB-8EJ" secondAttribute="centerX" id="f9a-bp-gre"/>
-                            <constraint firstItem="Joz-fK-vIF" firstAttribute="centerY" secondItem="cUm-fB-8EJ" secondAttribute="centerY" constant="-144.5" id="iFz-XV-wIy"/>
-                            <constraint firstItem="mbO-qZ-R8g" firstAttribute="centerX" secondItem="FZf-rZ-Pur" secondAttribute="centerX" id="j68-Gd-xDb"/>
+                            <constraint firstItem="Joz-fK-vIF" firstAttribute="centerY" secondItem="cUm-fB-8EJ" secondAttribute="centerY" constant="144.5" id="iFz-XV-wIy"/>
+                            <constraint firstItem="mbO-qZ-R8g" firstAttribute="centerX" secondItem="FZf-rZ-Pur" secondAttribute="centerX" constant="4.5" id="j68-Gd-xDb"/>
                             <constraint firstItem="v6x-Dd-Mcw" firstAttribute="centerX" secondItem="cUm-fB-8EJ" secondAttribute="centerX" constant="-28.5" id="jbw-wn-roo"/>
-                            <constraint firstItem="6XS-KI-OWX" firstAttribute="centerY" secondItem="cUm-fB-8EJ" secondAttribute="centerY" constant="-176" id="l5j-Kf-p00"/>
-                            <constraint firstItem="CmO-AO-DvO" firstAttribute="centerX" secondItem="cUm-fB-8EJ" secondAttribute="centerX" constant="-32" id="pQS-aP-Ttp"/>
-                            <constraint firstItem="FZf-rZ-Pur" firstAttribute="top" secondItem="mbO-qZ-R8g" secondAttribute="bottom" constant="9" id="sE1-MT-KCm"/>
+                            <constraint firstItem="6XS-KI-OWX" firstAttribute="centerY" secondItem="cUm-fB-8EJ" secondAttribute="centerY" constant="-151.5" id="l5j-Kf-p00"/>
+                            <constraint firstItem="CmO-AO-DvO" firstAttribute="centerX" secondItem="cUm-fB-8EJ" secondAttribute="centerX" constant="-0.25" id="pQS-aP-Ttp"/>
+                            <constraint firstItem="FZf-rZ-Pur" firstAttribute="top" secondItem="mbO-qZ-R8g" secondAttribute="bottom" constant="8" id="sE1-MT-KCm"/>
                             <constraint firstItem="xpL-CY-KOs" firstAttribute="centerX" secondItem="cUm-fB-8EJ" secondAttribute="centerX" id="t5E-yd-JU2"/>
                         </constraints>
                     </view>
@@ -250,27 +256,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bew-cC-IsZ">
-                                <rect key="frame" x="20" y="463" width="120" height="37"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="37" id="AnH-VD-jaE"/>
-                                    <constraint firstAttribute="width" constant="120" id="X0T-Xe-iF4"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="16"/>
-                                <size key="titleShadowOffset" width="1" height="1"/>
-                                <state key="normal" title="Take Photo">
-                                    <color key="titleColor" red="0.0" green="0.70017011330000001" blue="0.75673076920000004" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="takePhoto:" destination="iqB-1N-ffy" eventType="touchUpInside" id="p0N-aB-g6E"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2M8-GD-6dv">
                                 <rect key="frame" x="0.0" y="135" width="320" height="320"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prompt" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cEH-S6-WSy">
-                                <rect key="frame" x="10" y="72" width="300" height="55"/>
+                                <rect key="frame" x="2" y="72" width="316" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="jJp-RV-MhV"/>
                                 </constraints>
@@ -278,9 +268,9 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OXC-LR-Avi">
-                                <rect key="frame" x="159" y="463" width="141" height="37"/>
-                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="16"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OXC-LR-Avi">
+                                <rect key="frame" x="86" y="518" width="149" height="37"/>
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="20"/>
                                 <size key="titleShadowOffset" width="1" height="1"/>
                                 <state key="normal" title="Photo Library">
                                     <color key="titleColor" red="0.0" green="0.70017011330000001" blue="0.75673076920000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -290,23 +280,39 @@
                                     <action selector="selectPhoto:" destination="iqB-1N-ffy" eventType="touchUpInside" id="QQn-TT-S0D"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bew-cC-IsZ">
+                                <rect key="frame" x="95" y="463" width="130" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="37" id="AnH-VD-jaE"/>
+                                    <constraint firstAttribute="width" constant="120" id="X0T-Xe-iF4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="20"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
+                                <state key="normal" title="Take Photo">
+                                    <color key="titleColor" red="0.0" green="0.70017011330000001" blue="0.75673076920000004" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="takePhoto:" destination="iqB-1N-ffy" eventType="touchUpInside" id="p0N-aB-g6E"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="bew-cC-IsZ" firstAttribute="leading" secondItem="Gx4-xS-ve3" secondAttribute="leadingMargin" constant="4" id="5N3-oi-qff"/>
-                            <constraint firstItem="OXC-LR-Avi" firstAttribute="leading" secondItem="bew-cC-IsZ" secondAttribute="trailing" constant="19" id="5kf-px-67z"/>
-                            <constraint firstItem="z3j-Cn-X8z" firstAttribute="top" secondItem="bew-cC-IsZ" secondAttribute="bottom" constant="68" id="CB8-oy-Jpi"/>
+                            <constraint firstItem="bew-cC-IsZ" firstAttribute="leading" secondItem="Gx4-xS-ve3" secondAttribute="leadingMargin" constant="80" id="5N3-oi-qff"/>
+                            <constraint firstItem="OXC-LR-Avi" firstAttribute="leading" secondItem="bew-cC-IsZ" secondAttribute="trailing" constant="-134" id="5kf-px-67z"/>
+                            <constraint firstItem="z3j-Cn-X8z" firstAttribute="top" secondItem="bew-cC-IsZ" secondAttribute="bottom" constant="64" id="CB8-oy-Jpi"/>
                             <constraint firstAttribute="trailing" secondItem="2M8-GD-6dv" secondAttribute="trailing" id="Es1-Tc-gX7"/>
                             <constraint firstItem="cEH-S6-WSy" firstAttribute="top" secondItem="fCR-yt-bbv" secondAttribute="bottom" constant="8" symbolic="YES" id="Hhd-Eb-uUm"/>
-                            <constraint firstItem="bew-cC-IsZ" firstAttribute="firstBaseline" secondItem="OXC-LR-Avi" secondAttribute="firstBaseline" id="Ij1-uh-ai9"/>
-                            <constraint firstItem="bew-cC-IsZ" firstAttribute="baseline" secondItem="OXC-LR-Avi" secondAttribute="baseline" id="JYK-5a-p5l"/>
-                            <constraint firstItem="bew-cC-IsZ" firstAttribute="top" secondItem="2M8-GD-6dv" secondAttribute="bottom" constant="8" symbolic="YES" id="OXU-TQ-uw2"/>
+                            <constraint firstItem="bew-cC-IsZ" firstAttribute="firstBaseline" secondItem="OXC-LR-Avi" secondAttribute="firstBaseline" constant="-51" id="Ij1-uh-ai9"/>
+                            <constraint firstItem="bew-cC-IsZ" firstAttribute="baseline" secondItem="OXC-LR-Avi" secondAttribute="baseline" constant="-51" id="JYK-5a-p5l"/>
+                            <constraint firstItem="bew-cC-IsZ" firstAttribute="top" secondItem="2M8-GD-6dv" secondAttribute="bottom" constant="12" id="OXU-TQ-uw2"/>
                             <constraint firstItem="2M8-GD-6dv" firstAttribute="leading" secondItem="Gx4-xS-ve3" secondAttribute="leading" id="R62-pj-WzC"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="OXC-LR-Avi" secondAttribute="trailing" constant="4" id="Tyw-aH-s4C"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="OXC-LR-Avi" secondAttribute="trailing" constant="65" id="Tyw-aH-s4C"/>
                             <constraint firstItem="2M8-GD-6dv" firstAttribute="top" secondItem="cEH-S6-WSy" secondAttribute="bottom" constant="8" symbolic="YES" id="WXb-Du-dyQ"/>
                             <constraint firstItem="cEH-S6-WSy" firstAttribute="centerX" secondItem="2M8-GD-6dv" secondAttribute="centerX" id="X9g-ON-AoY"/>
-                            <constraint firstItem="bew-cC-IsZ" firstAttribute="top" secondItem="OXC-LR-Avi" secondAttribute="top" id="anj-oW-yJX"/>
-                            <constraint firstItem="cEH-S6-WSy" firstAttribute="leading" secondItem="Gx4-xS-ve3" secondAttribute="leadingMargin" constant="-6" id="oJx-IS-eRC"/>
+                            <constraint firstItem="bew-cC-IsZ" firstAttribute="top" secondItem="OXC-LR-Avi" secondAttribute="top" constant="-51" id="anj-oW-yJX"/>
+                            <constraint firstItem="cEH-S6-WSy" firstAttribute="leading" secondItem="Gx4-xS-ve3" secondAttribute="leadingMargin" constant="-14" id="oJx-IS-eRC"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="EZ2-i4-dQe">
@@ -339,8 +345,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yjx-UO-jkg">
-                                <rect key="frame" x="209" y="510" width="95" height="38"/>
-                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="18"/>
+                                <rect key="frame" x="198" y="508" width="106" height="40"/>
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="20"/>
                                 <state key="normal" title="Next Round">
                                     <color key="titleColor" red="0.0" green="0.70017011330000001" blue="0.75673076920000004" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -349,8 +355,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qpy-Vs-IPd">
-                                <rect key="frame" x="16" y="512" width="53" height="35"/>
-                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="16"/>
+                                <rect key="frame" x="16" y="510" width="60" height="38"/>
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="18"/>
                                 <state key="normal" title="Restart">
                                     <color key="titleColor" red="0.0" green="0.70017011330000001" blue="0.75673076920000004" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -358,14 +364,8 @@
                                     <segue destination="fdd-Am-djL" kind="push" identifier="toConnectionsView" id="gtp-we-yMR"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scores" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMp-Ps-FKb">
-                                <rect key="frame" x="120" y="78" width="80" height="37"/>
-                                <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="26"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ccm-HW-XcS">
-                                <rect key="frame" x="64" y="134" width="193" height="341"/>
+                                <rect key="frame" x="64" y="169.5" width="193" height="303.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="Z8Q-Jc-g1i" detailTextLabel="s5I-S2-ak8" style="IBUITableViewCellStyleValue1" id="QVE-vQ-qCE">
@@ -399,18 +399,24 @@
                                     <outlet property="delegate" destination="u4A-D1-Dxe" id="Vl7-1F-8tb"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scores" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMp-Ps-FKb">
+                                <rect key="frame" x="117" y="106" width="86" height="39.5"/>
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="28"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Qpy-Vs-IPd" firstAttribute="baseline" secondItem="yjx-UO-jkg" secondAttribute="baseline" id="Cuj-KK-GNP"/>
-                            <constraint firstItem="Ccm-HW-XcS" firstAttribute="top" secondItem="OMp-Ps-FKb" secondAttribute="bottom" constant="19" id="Jtj-gQ-TqW"/>
+                            <constraint firstItem="Ccm-HW-XcS" firstAttribute="top" secondItem="OMp-Ps-FKb" secondAttribute="bottom" constant="24" id="Jtj-gQ-TqW"/>
                             <constraint firstItem="yjx-UO-jkg" firstAttribute="top" secondItem="Ccm-HW-XcS" secondAttribute="bottom" constant="35" id="LDt-lL-58h"/>
                             <constraint firstItem="yjx-UO-jkg" firstAttribute="trailing" secondItem="Ldh-cU-fhA" secondAttribute="trailingMargin" id="SY7-15-6zU"/>
                             <constraint firstItem="OMp-Ps-FKb" firstAttribute="centerX" secondItem="Ldh-cU-fhA" secondAttribute="centerX" id="a5Z-WE-AeI"/>
                             <constraint firstAttribute="bottom" secondItem="yjx-UO-jkg" secondAttribute="bottom" constant="20" symbolic="YES" id="aYY-HL-mfb"/>
                             <constraint firstItem="OMp-Ps-FKb" firstAttribute="centerX" secondItem="Ccm-HW-XcS" secondAttribute="centerX" id="bcH-4Z-I4S"/>
                             <constraint firstItem="Ccm-HW-XcS" firstAttribute="leading" secondItem="Ldh-cU-fhA" secondAttribute="leadingMargin" constant="48" id="kLd-sn-AIa"/>
-                            <constraint firstItem="OMp-Ps-FKb" firstAttribute="top" secondItem="JUb-A8-yFc" secondAttribute="bottom" constant="58" id="oT3-ax-zSK"/>
+                            <constraint firstItem="OMp-Ps-FKb" firstAttribute="top" secondItem="JUb-A8-yFc" secondAttribute="bottom" constant="42" id="oT3-ax-zSK"/>
                             <constraint firstItem="Qpy-Vs-IPd" firstAttribute="leading" secondItem="Ldh-cU-fhA" secondAttribute="leadingMargin" id="q8X-68-Gsb"/>
                         </constraints>
                     </view>
@@ -439,7 +445,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="3dQ-6c-PrA" customClass="GameCollectionViewCell">
-                                <rect key="frame" x="0.0" y="50" width="320" height="320"/>
+                                <rect key="frame" x="0.0" y="114" width="320" height="320"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
@@ -465,7 +471,7 @@
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HeaderView" id="whX-bN-eJP" customClass="GameCollectionHeaderViewCollectionReusableView">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                            <rect key="frame" x="0.0" y="64" width="320" height="50"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Prompt" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YqT-J3-Khr">
@@ -517,7 +523,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="gtp-we-yMR"/>
-        <segue reference="Bod-OD-9OC"/>
+        <segue reference="klN-fs-5Kl"/>
+        <segue reference="07g-AE-VQP"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -88,6 +88,28 @@
     
 }
 
+- (BOOL)checkIfPlayerVoted:(NSString *)voter{
+    BOOL voted = NO;
+    for (int i = 0; i < _playersArray.count; i++) {
+        if ([voter isEqualToString:[[_playersArray objectAtIndex:i] name]]) {
+            if ([[_playersArray objectAtIndex:i] voted]) {
+                voted = YES;
+            } else {
+                voted = NO;
+            }
+        }
+    }
+    return voted;
+}
+
+- (void)oneVotePerPlayer:(NSString *)voter{
+    for (int i = 0; i < _playersArray.count; i++) {
+        if ([voter isEqualToString:[[_playersArray objectAtIndex:i] name]]) {
+            [[_playersArray objectAtIndex:i] playerVoted:YES];
+        }
+    }
+}
+
 
 // looks at the sorted array, if the first person has the highest score then award them a point, else it's a tie
 - (void)awardPointToWinner:(NSArray *)sortedArray{

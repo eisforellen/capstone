@@ -25,6 +25,8 @@
 - (BOOL)readyToAwardPoints;
 - (void)declareWinner;
 - (void)addVotesToPlayer:(NSString *)nameOfWinner;
+- (void)oneVotePerPlayer:(NSString *)voter;
+- (BOOL)checkIfPlayerVoted:(NSString *)voter;
 
 
 @end

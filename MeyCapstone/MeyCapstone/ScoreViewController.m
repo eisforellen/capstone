@@ -31,7 +31,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveScoreFromPeersNotification:) name:@"DidReceiveDataNotification" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(peersDidReceiveDataWithNotification:) name:@"PeerReceivedScoreNotification" object:nil];
 
-    //[_game addVotesToPlayer];
+    [self votingFor:_nameOfVotee votedBy:_appDelegate.mcHandler.session.myPeerID.displayName];
     [_tableView reloadData];
     
 }
@@ -41,14 +41,16 @@
 }
 
 - (void)didReceiveScoreFromPeersNotification:(NSNotification *)notification {
-//    MCPeerID *peerID = [[notification userInfo] objectForKey:@"peerID"];
-//    NSString *voterName = peerID.displayName;
+    MCPeerID *peerID = [[notification userInfo] objectForKey:@"peerID"];
+    NSString *voterName = peerID.displayName;
     NSDictionary *userInfo = [notification userInfo];
     
     NSData *receivedData = [[notification userInfo] objectForKey:@"data"];
     NSString *nameOfPersonWhoWasVotedFor = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
     NSLog(@"\n\n!!!!!!!! didReceiveScoreFromPeers");
-    [_game addVotesToPlayer:nameOfPersonWhoWasVotedFor];
+    
+    // check if the sender voted, if so log it. if not count the vote and mark the sender as voted
+    [self votingFor:nameOfPersonWhoWasVotedFor votedBy:voterName];
 //    if (_game.totalVoteCount < _game.playersArray.count) {
 //        for (int i = 0; i < _game.playersArray.count; i++) {
 //            if ([nameOfPersonWhoWasVotedFor isEqualToString:[[_game.playersArray objectAtIndex:i] name]]){
@@ -65,6 +67,15 @@
     [_game declareWinner];
     [_tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
     // add vote to the person.vote and trigger that the person voted
+}
+
+- (void)votingFor:(NSString *)voteReceiver votedBy:(NSString *)voter {
+    if ([_game checkIfPlayerVoted:voter]) {
+        NSLog(@"%@ already voted - no votes added, current vote total: %i", voter, _game.totalVoteCount);
+    } else {
+        [_game addVotesToPlayer:voteReceiver];
+        [_game oneVotePerPlayer:voter];
+    }
 }
 
 - (void)peersDidReceiveDataWithNotification:(NSNotification *)notification{

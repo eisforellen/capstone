@@ -17,6 +17,6 @@
 
 - (void)setupPlayerWith:(NSString *)name;
 
-
+- (BOOL)playerVoted:(BOOL)voted;
 
 @end
