@@ -19,6 +19,21 @@
     _votesReceived = 0;
 }
 
+- (BOOL)playerVoted:(BOOL)voted{
+    if (voted) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+//- (BOOL)checkIfPlayerVoted:(Player *)player{
+//    if (player.voted) {
+//        return YES;
+//    } else {
+//        return NO;
+//    }
+//}
 
 
 @end

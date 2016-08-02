@@ -16,7 +16,6 @@
 
 @property (strong, nonatomic) AppDelegate *appDelegate;
 
-@property (nonatomic) BOOL roundIsOver;
 
 @end
 
@@ -30,117 +29,56 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveScoreFromPeersNotification:) name:@"DidReceiveDataNotification" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(peersDidReceiveDataWithNotification:) name:@"PeerReceivedScoreNotification" object:nil];
 
-    [self addVotesToPlayer];
+    [self votingFor:_nameOfVotee votedBy:_appDelegate.mcHandler.session.myPeerID.displayName];
+    [_game declareWinner];
     [_tableView reloadData];
     
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    _roundIsOver = NO;
+    _game.moveOnToNextRound = false;
+    [_tableView reloadData];
 }
 
 - (void)didReceiveScoreFromPeersNotification:(NSNotification *)notification {
-//    MCPeerID *peerID = [[notification userInfo] objectForKey:@"peerID"];
-//    NSString *voterName = peerID.displayName;
+    MCPeerID *peerID = [[notification userInfo] objectForKey:@"peerID"];
+    NSString *voterName = peerID.displayName;
     NSDictionary *userInfo = [notification userInfo];
     
     NSData *receivedData = [[notification userInfo] objectForKey:@"data"];
     NSString *nameOfPersonWhoWasVotedFor = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
     NSLog(@"\n\n!!!!!!!! didReceiveScoreFromPeers");
-    if (_game.totalVoteCount < _game.playersArray.count) {
-        for (int i = 0; i < _game.playersArray.count; i++) {
-            if ([nameOfPersonWhoWasVotedFor isEqualToString:[[_game.playersArray objectAtIndex:i] name]]){
-                [_game addVotesReceived:[_game.playersArray objectAtIndex:i]];
-                _game.totalVoteCount ++;
-                NSLog(@"A vote was added, vote count is now: %i", _game.totalVoteCount);
-            }
-        }
-    }
+    
+    // check if the sender voted, if so log it. if not count the vote and mark the sender as voted
+    [self votingFor:nameOfPersonWhoWasVotedFor votedBy:voterName];
+
     dispatch_async(dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter] postNotificationName:@"PeerReceivedScoreNotification" object:nil userInfo:userInfo];
         NSLog(@"\nScore View -- Notification was sent via dispath async\n");
     });
+    [_game declareWinner];
     [_tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
     // add vote to the person.vote and trigger that the person voted
+}
+
+- (void)votingFor:(NSString *)voteReceiver votedBy:(NSString *)voter {
+    if ([_game checkIfPlayerVoted:voter]) {
+        NSLog(@"%@ already voted - no votes added, current vote total: %i", voter, _game.totalVoteCount);
+    } else {
+        [_game addVotesToPlayer:voteReceiver];
+        [_game oneVotePerPlayer:voter];
+    }
 }
 
 - (void)peersDidReceiveDataWithNotification:(NSNotification *)notification{
     // reloadData for sender and declare winner if needed
     NSLog(@"SCORE VIEW -- peersDidReceiveDataWithNotification called \n\n");
-    [self declareWinner];
-    [_tableView reloadData];
+    [_game declareWinner];
+    [_tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
     
 }
 
-- (void)addVotesToPlayer{
-    // check to see who won, compare sender of pick to current players if equal add 1 to score
-    if (_game.totalVoteCount < _game.playersArray.count) {
-        for (int i = 0; i < _game.playersArray.count; i++) {
-            if ([_nameOfWinner isEqualToString:[[_game.playersArray objectAtIndex:i] name]]){
-                [_game addVotesReceived:[_game.playersArray objectAtIndex:i]];
-                _game.totalVoteCount ++;
-                NSLog(@"A vote was added, vote count is now: %i", _game.totalVoteCount);
-            }
-        }
-    }
-    [self declareWinner];
-    
-    [_tableView reloadData];
-}
 
-// sorts plays from highest score to lowest
-
-- (NSArray *)sortPlayersByVotes{
-    NSLog(@"Players array before sort: %@", _game.playersArray);
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"votesReceived" ascending:NO];
-    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-    NSArray *playersSortedByVotesReceived = [_game.playersArray sortedArrayUsingDescriptors:sortDescriptors];
-    NSLog(@"Sorted Players Array by Vote: %@", playersSortedByVotesReceived);
-    return playersSortedByVotesReceived;
-}
-
-// looks at the sorted array, if the first person has the highest score then award them a point, else it's a tie
-- (void)awardPointToWinner:(NSArray *)sortedArray{
-    if (!_roundIsOver){
-        if (_game.playersArray.count > 1) {
-            if ([sortedArray[0] votesReceived] > [sortedArray[1] votesReceived]){
-                // add alert that says this
-                NSLog(@"Player %@ is the winner!", [sortedArray[0] name]);
-                [_game awardPoint:[sortedArray objectAtIndex:0]];
-                _roundIsOver = YES;
-            } else {
-                NSLog(@"It's a tie!");
-            }
-        } else {
-            NSLog(@"there is only one player");
-        }
-    }
-}
-
-// if we have all the votes in, tally them, sort them and award a point to the winner
-- (void)declareWinner{
-    if (!_roundIsOver){
-        if (_game.totalVoteCount >= _game.playersArray.count) {
-            NSLog(@"THE GAME IS OVER WE HAVE A WEINER!");
-            [self awardPointToWinner:[self sortPlayersByVotes]];
-            [_tableView reloadData];
-            _roundIsOver = YES;
-        } else {
-            NSLog(@"No winner yet");
-        }
-    } else {
-        NSLog(@"decalreWinner called but round is over\n");
-    }
-}
-
-- (void)clearAllVotes{
-    for (Player *player in _game.playersArray){
-        player.votesReceived = 0;
-        player.voted = NO;
-    }
-    _game.totalVoteCount = 0;
-    
-}
 
 #pragma mark - Table View Setup
 
@@ -181,8 +119,8 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     _game.turnCount ++;
-    _roundIsOver = NO;
-    [self clearAllVotes];
+    
+    [_game clearAllVotes];
     
     // if the turn count is less than the number of prompts available the person clicks next round, then take them to the image picker
     if (_game.turnCount < _game.promptsArray.count && [[segue identifier] isEqualToString:@"toImagePicker"]){

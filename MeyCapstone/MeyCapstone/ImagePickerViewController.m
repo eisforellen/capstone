@@ -34,6 +34,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     // populate label based on the turn
     _promptLabel.text = [_game.promptsArray objectAtIndex:_game.turnCount];
+    NSLog(@"!!!!!!!!!!!!!!!!!! Vote count: %i", _game.totalVoteCount);
 }
 
 - (void)handleReceivingDataWithNotification:(NSNotification *)notification {

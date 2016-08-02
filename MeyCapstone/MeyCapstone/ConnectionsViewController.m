@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *textPlayerName;
 @property (weak, nonatomic) IBOutlet UISwitch *switchVisible;
 @property (weak, nonatomic) IBOutlet UITextView *textViewPlayerList;
+@property (strong, nonatomic) IBOutlet UILabel *visibleToOthersLabel;
 
 @property (strong, nonatomic) AppDelegate *appDelegate;
 
@@ -36,6 +37,13 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(peerChangedStateWithNotification:) name:@"DidChangeStateNotification" object:nil];
     
     [_textPlayerName setDelegate:self];
+    
+    _switchVisible.enabled = NO;
+    _switchVisible.alpha = 0;
+    _visibleToOthersLabel.hidden = YES;
+    
+   // self.view.backgroundColor = [UIColor whiteColor];
+    
 }
 
 - (void)peerChangedStateWithNotification:(NSNotification *)notification {

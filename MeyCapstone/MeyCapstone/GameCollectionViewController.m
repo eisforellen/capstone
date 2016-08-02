@@ -30,6 +30,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
+    self.view.backgroundColor = [UIColor whiteColor];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleReceivingDataWithNotification:) name:@"DidReceiveDataNotification" object:nil];
     // AddObserver and Notification for when the above handle is triggered to send a notification back to the sender
@@ -44,20 +45,28 @@ static NSString * const reuseIdentifier = @"Cell";
 - (void)didReceiveScoreFromPeersNotification:(NSNotification *)notification {
     MCPeerID *peerID = [[notification userInfo] objectForKey:@"peerID"];
     NSString *voterName = peerID.displayName;
-    // Player *voter = [_game.playersArray objectForKey @"voterName"] -- something like that, then flag that they voted
+
+    
     NSDictionary *userInfo = [notification userInfo];
     
     NSData *receivedData = [[notification userInfo] objectForKey:@"data"];
     NSString *nameOfPersonWhoWasVotedFor = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
     NSLog(@"\n\n!!!!!!!! didReceiveScoreFromPeers");
     
-    for (int i = 0; i < _game.playersArray.count; i++) {
-        if ([nameOfPersonWhoWasVotedFor isEqualToString:[[_game.playersArray objectAtIndex:i] name]]){
-            [_game addVotesReceived:[_game.playersArray objectAtIndex:i]];
-            _game.totalVoteCount ++;
-            NSLog(@"A vote was added, vote count is now: %i", _game.totalVoteCount);
-        }
+    // check if the sender voted, if so log it. if not count the vote and mark the sender as voted
+    if ([_game checkIfPlayerVoted:voterName]) {
+        NSLog(@"%@ already voted - no votes added, current vote total: %i", voterName, _game.totalVoteCount);
+    } else {
+        [_game addVotesToPlayer:nameOfPersonWhoWasVotedFor];
+        [_game oneVotePerPlayer:voterName];
     }
+//    for (int i = 0; i < _game.playersArray.count; i++) {
+//        if ([nameOfPersonWhoWasVotedFor isEqualToString:[[_game.playersArray objectAtIndex:i] name]]){
+//            [_game addVotesReceived:[_game.playersArray objectAtIndex:i]];
+//            _game.totalVoteCount ++;
+//            NSLog(@"A vote was added, vote count is now: %i", _game.totalVoteCount);
+//        }
+//    }
     
 }
 
@@ -127,7 +136,10 @@ static NSString * const reuseIdentifier = @"Cell";
     ScoreViewController *vc = [segue destinationViewController];
     vc.game = _game;
     vc.game.playersArray = _game.playersArray;
-    vc.nameOfWinner = _selectedSubmissionName;
+    vc.nameOfVotee = _selectedSubmissionName;
+    [vc.tableView reloadData];
+    // try erasing the submittedAnswerArray to clear that up
+    _arrayOfSubmittedAnswers = nil;
 }
 
 - (IBAction)pickWinnerButtonClicked:(id)sender {

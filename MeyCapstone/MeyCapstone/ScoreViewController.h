@@ -13,7 +13,7 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) Game *game;
-@property (nonatomic, strong) NSString *nameOfWinner;
+@property (nonatomic, strong) NSString *nameOfVotee;
 
 
 
