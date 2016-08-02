@@ -52,11 +52,11 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" scrollEnabled="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="LxZ-mH-Vm2">
+                            <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LxZ-mH-Vm2">
                                 <rect key="frame" x="37" y="270" width="246" height="137"/>
                                 <string key="text">Connect with nearby friends. Put your best pic up against your friends. Vote on a winner. Player with the most votes wins the round.</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="23"/>
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="21"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
@@ -174,10 +174,10 @@
                                     <constraint firstAttribute="width" secondItem="8z6-VP-NZI" secondAttribute="height" multiplier="44:9" constant="-91.888888888888914" id="UFa-5x-p4n"/>
                                     <constraint firstAttribute="width" secondItem="8z6-VP-NZI" secondAttribute="height" multiplier="187:49" constant="-23.244897959183675" id="iHh-cF-mWx"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="20"/>
-                                <size key="titleShadowOffset" width="1" height="1"/>
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="22"/>
+                                <size key="titleShadowOffset" width="2.2250738585072014e-308" height="2.2250738585072014e-308"/>
                                 <state key="normal" title="Browse for Players">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -339,7 +339,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="EZ2-i4-dQe">
-                        <barButtonItem key="rightBarButtonItem" title="Submit" id="dV9-NI-hBF">
+                        <barButtonItem key="rightBarButtonItem" title="Submit Your Photo" id="dV9-NI-hBF">
                             <connections>
                                 <action selector="submitImage:" destination="iqB-1N-ffy" id="TYL-NO-yA8"/>
                                 <segue destination="cGz-7H-B5X" kind="push" identifier="toGameCollectionVC" id="YXW-lU-9VJ"/>
@@ -497,7 +497,7 @@
                             <rect key="frame" x="0.0" y="64" width="320" height="100"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Prompt" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YqT-J3-Khr">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Prompt" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YqT-J3-Khr">
                                     <rect key="frame" x="20" y="6" width="280" height="88"/>
                                     <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="16"/>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
