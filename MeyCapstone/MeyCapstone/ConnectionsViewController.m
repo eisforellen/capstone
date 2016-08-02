@@ -42,7 +42,7 @@
     _switchVisible.alpha = 0;
     _visibleToOthersLabel.hidden = YES;
     
-   // self.view.backgroundColor = [UIColor whiteColor];
+
     
 }
 

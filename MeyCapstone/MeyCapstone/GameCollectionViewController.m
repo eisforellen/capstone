@@ -37,6 +37,8 @@ static NSString * const reuseIdentifier = @"Cell";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(peersDidReceiveDataWithNotification:) name:@"PeerReceivedDataNotification" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveScoreFromPeersNotification:) name:@"DidReceiveDataNotification" object:nil];
+    
+
 
 }
 
@@ -83,6 +85,7 @@ static NSString * const reuseIdentifier = @"Cell";
     // check if the submission is already there and submission count matches player count
     if (submittedAnswer != nil && ![_arrayOfSubmittedAnswers containsObject:submittedAnswer] && _arrayOfSubmittedAnswers.count < _game.playersArray.count) {
         [_arrayOfSubmittedAnswers addObject:submittedAnswer];
+
     }
     NSLog(@"Array of Submitted Answers: %@", _arrayOfSubmittedAnswers);
     

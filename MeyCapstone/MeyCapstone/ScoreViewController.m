@@ -32,6 +32,8 @@
     [self votingFor:_nameOfVotee votedBy:_appDelegate.mcHandler.session.myPeerID.displayName];
     [_game declareWinner];
     [_tableView reloadData];
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"backgroundPattern"]]];
+
     
 }
 
