@@ -56,6 +56,7 @@
         player.votesReceived = 0;
         player.voted = NO;
     }
+    _moveOnToNextRound = NO;
     _totalVoteCount = 0;
     
 }
@@ -74,7 +75,8 @@
 - (void)addVotesToPlayer:(NSString *)nameOfWinner{
     // check to see who won, compare sender of pick to current players if equal add 1 to score
 // if game is not ready to award points
-        if (![self readyToAwardPoints]) {
+    [self declareWinner];
+    if (![self readyToAwardPoints]) {
             for (int i = 0; i < _playersArray.count; i++) {
                 if ([nameOfWinner isEqualToString:[[_playersArray objectAtIndex:i] name]]){
                     [self addVotesReceived:[_playersArray objectAtIndex:i]];
@@ -82,8 +84,6 @@
                     NSLog(@"A vote was added, vote count is now: %i", _totalVoteCount);
                 }
             }
-        } else {
-            [self declareWinner];
         }
     
 }

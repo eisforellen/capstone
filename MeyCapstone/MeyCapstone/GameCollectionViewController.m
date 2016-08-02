@@ -138,6 +138,8 @@ static NSString * const reuseIdentifier = @"Cell";
     vc.game.playersArray = _game.playersArray;
     vc.nameOfVotee = _selectedSubmissionName;
     [vc.tableView reloadData];
+    // try erasing the submittedAnswerArray to clear that up
+    _arrayOfSubmittedAnswers = nil;
 }
 
 - (IBAction)pickWinnerButtonClicked:(id)sender {

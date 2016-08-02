@@ -16,8 +16,6 @@
 
 @property (strong, nonatomic) AppDelegate *appDelegate;
 
-//remove this once bool is abstracted to the class
-//@property (nonatomic) BOOL roundIsOver;
 
 @end
 
@@ -32,12 +30,14 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(peersDidReceiveDataWithNotification:) name:@"PeerReceivedScoreNotification" object:nil];
 
     [self votingFor:_nameOfVotee votedBy:_appDelegate.mcHandler.session.myPeerID.displayName];
+    [_game declareWinner];
     [_tableView reloadData];
     
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     _game.moveOnToNextRound = false;
+    [_tableView reloadData];
 }
 
 - (void)didReceiveScoreFromPeersNotification:(NSNotification *)notification {
@@ -51,15 +51,7 @@
     
     // check if the sender voted, if so log it. if not count the vote and mark the sender as voted
     [self votingFor:nameOfPersonWhoWasVotedFor votedBy:voterName];
-//    if (_game.totalVoteCount < _game.playersArray.count) {
-//        for (int i = 0; i < _game.playersArray.count; i++) {
-//            if ([nameOfPersonWhoWasVotedFor isEqualToString:[[_game.playersArray objectAtIndex:i] name]]){
-//                [_game addVotesReceived:[_game.playersArray objectAtIndex:i]];
-//                _game.totalVoteCount ++;
-//                NSLog(@"A vote was added, vote count is now: %i", _game.totalVoteCount);
-//            }
-//        }
-//    }
+
     dispatch_async(dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter] postNotificationName:@"PeerReceivedScoreNotification" object:nil userInfo:userInfo];
         NSLog(@"\nScore View -- Notification was sent via dispath async\n");
@@ -82,7 +74,7 @@
     // reloadData for sender and declare winner if needed
     NSLog(@"SCORE VIEW -- peersDidReceiveDataWithNotification called \n\n");
     [_game declareWinner];
-    [_tableView performSelector:@selector(reloadData) withObject:nil afterDelay:2.0];
+    [_tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
     
 }
 
