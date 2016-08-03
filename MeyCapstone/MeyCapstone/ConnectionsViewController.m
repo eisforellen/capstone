@@ -42,9 +42,10 @@
     _switchVisible.alpha = 0;
     _visibleToOthersLabel.hidden = YES;
     
-
+    
     
 }
+
 
 - (void)peerChangedStateWithNotification:(NSNotification *)notification {
     // Get state of the peer

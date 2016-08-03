@@ -75,7 +75,9 @@
                             <constraint firstItem="LxZ-mH-Vm2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="17" id="w9p-li-4P6"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="l7e-nc-HjN"/>
+                    <navigationItem key="navigationItem" id="l7e-nc-HjN">
+                        <barButtonItem key="backBarButtonItem" title="Escape" id="fA7-ka-jBx"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="instructionTextView" destination="LxZ-mH-Vm2" id="GlM-Wt-ZZe"/>
                     </connections>
@@ -133,7 +135,7 @@
                                 <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xpL-CY-KOs">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xpL-CY-KOs">
                                 <rect key="frame" x="122" y="535" width="75" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="75" id="2tc-tp-lMz"/>
@@ -146,8 +148,8 @@
                                     <action selector="disconnectButtonClicked:" destination="fdd-Am-djL" eventType="touchUpInside" id="a1S-Ai-koq"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TFM-Hu-bfL">
-                                <rect key="frame" x="23" y="419" width="280" height="110"/>
+                            <button alpha="0.94999999999999996" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TFM-Hu-bfL">
+                                <rect key="frame" x="0.0" y="419" width="320" height="110"/>
                                 <color key="backgroundColor" red="0.58431372549019611" green="0.96470588235294119" blue="0.7686274509803922" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="51"/>
                                 <state key="normal" title="Let's Play">
@@ -158,11 +160,11 @@
                                     <segue destination="iqB-1N-ffy" kind="push" identifier="toImagePickerVC" id="07g-AE-VQP"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8z6-VP-NZI">
-                                <rect key="frame" x="23" y="157" width="280" height="64"/>
+                            <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8z6-VP-NZI">
+                                <rect key="frame" x="0.0" y="157" width="320" height="64"/>
                                 <color key="backgroundColor" red="0.78823529411764703" green="0.97647058823529409" blue="0.88627450980392153" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="7bh-3G-4V1"/>
+                                    <constraint firstAttribute="height" constant="64" id="9yN-OG-rxS"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="22"/>
                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="2.2250738585072014e-308"/>
@@ -188,8 +190,16 @@
                                     <action selector="toggleVisibility:" destination="fdd-Am-djL" eventType="valueChanged" id="fei-gv-U7S"/>
                                 </connections>
                             </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Choose Your Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CmO-AO-DvO">
+                                <rect key="frame" x="65" y="63" width="190" height="33"/>
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <size key="shadowOffset" width="0.0" height="0.0"/>
+                            </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.80000000000000004" contentMode="scaleToFill" misplaced="YES" editable="NO" text="Nobody's connected yet" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="mbO-qZ-R8g">
-                                <rect key="frame" x="23" y="262" width="280" height="106"/>
+                                <rect key="frame" x="51" y="262" width="219" height="106"/>
                                 <color key="backgroundColor" red="0.08235294118" green="0.64705882349999999" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" red="0.45059788909999998" green="0.94863782050000001" blue="0.55277638340000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -199,14 +209,6 @@
                                 <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Choose Your Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CmO-AO-DvO">
-                                <rect key="frame" x="65" y="63" width="190" height="33"/>
-                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="18"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                                <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <size key="shadowOffset" width="0.0" height="0.0"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -216,35 +218,35 @@
                             <constraint firstItem="6XS-KI-OWX" firstAttribute="top" secondItem="WOe-Wn-mm0" secondAttribute="bottom" constant="71" id="Aqz-X4-Ype"/>
                             <constraint firstItem="CmO-AO-DvO" firstAttribute="centerX" secondItem="FZf-rZ-Pur" secondAttribute="centerX" id="BNn-Cp-sjj"/>
                             <constraint firstItem="FZf-rZ-Pur" firstAttribute="centerX" secondItem="xpL-CY-KOs" secondAttribute="centerX" id="EQx-38-M5j"/>
-                            <constraint firstItem="mbO-qZ-R8g" firstAttribute="leading" secondItem="TFM-Hu-bfL" secondAttribute="leading" id="GZk-eL-uhL"/>
+                            <constraint firstItem="mbO-qZ-R8g" firstAttribute="leading" secondItem="TFM-Hu-bfL" secondAttribute="leading" constant="51" id="GZk-eL-uhL"/>
                             <constraint firstItem="6XS-KI-OWX" firstAttribute="leading" secondItem="v6x-Dd-Mcw" secondAttribute="trailing" constant="1" id="HDg-zH-yIK"/>
+                            <constraint firstItem="8z6-VP-NZI" firstAttribute="trailing" secondItem="TFM-Hu-bfL" secondAttribute="trailing" id="Hze-4q-wnh"/>
+                            <constraint firstItem="8z6-VP-NZI" firstAttribute="leading" secondItem="TFM-Hu-bfL" secondAttribute="leading" id="KXb-99-h3t"/>
                             <constraint firstItem="mbO-qZ-R8g" firstAttribute="top" secondItem="lGM-vn-H8J" secondAttribute="bottom" constant="8" id="LYO-F5-FZ3"/>
                             <constraint firstItem="CmO-AO-DvO" firstAttribute="centerX" secondItem="cUm-fB-8EJ" secondAttribute="centerX" id="O69-Sx-TPv"/>
+                            <constraint firstItem="8z6-VP-NZI" firstAttribute="centerX" secondItem="lGM-vn-H8J" secondAttribute="centerX" id="OUc-BR-8Fo"/>
                             <constraint firstAttribute="trailingMargin" secondItem="6XS-KI-OWX" secondAttribute="trailing" constant="-8" id="QGe-Ua-dto"/>
-                            <constraint firstItem="mbO-qZ-R8g" firstAttribute="trailing" secondItem="8z6-VP-NZI" secondAttribute="trailing" id="RAQ-LN-1GP"/>
                             <constraint firstItem="CmO-AO-DvO" firstAttribute="leading" secondItem="cUm-fB-8EJ" secondAttribute="leadingMargin" constant="45" id="RFp-OO-HBq"/>
-                            <constraint firstItem="lGM-vn-H8J" firstAttribute="top" secondItem="8z6-VP-NZI" secondAttribute="bottom" constant="10" id="SeT-WQ-Nle"/>
                             <constraint firstItem="CmO-AO-DvO" firstAttribute="top" secondItem="WOe-Wn-mm0" secondAttribute="bottom" constant="43" id="SsE-hg-7y9"/>
                             <constraint firstItem="v6x-Dd-Mcw" firstAttribute="leading" secondItem="cUm-fB-8EJ" secondAttribute="leadingMargin" constant="3" id="T0d-2J-xdm"/>
-                            <constraint firstItem="8z6-VP-NZI" firstAttribute="top" secondItem="CmO-AO-DvO" secondAttribute="bottom" constant="61" id="U90-e3-23z"/>
                             <constraint firstItem="TFM-Hu-bfL" firstAttribute="top" secondItem="FZf-rZ-Pur" secondAttribute="bottom" constant="8" symbolic="YES" id="Vyc-YE-TwJ"/>
+                            <constraint firstItem="8z6-VP-NZI" firstAttribute="leading" secondItem="cUm-fB-8EJ" secondAttribute="leading" id="WgK-HB-HQJ"/>
                             <constraint firstItem="6XS-KI-OWX" firstAttribute="trailing" secondItem="Joz-fK-vIF" secondAttribute="trailing" id="XCI-ko-AbQ"/>
                             <constraint firstItem="v6x-Dd-Mcw" firstAttribute="centerY" secondItem="6XS-KI-OWX" secondAttribute="centerY" id="XKr-2O-pmz"/>
                             <constraint firstAttribute="trailingMargin" secondItem="FhJ-du-dPa" secondAttribute="trailing" constant="40" id="Xyy-gg-K4c"/>
+                            <constraint firstItem="8z6-VP-NZI" firstAttribute="top" secondItem="6XS-KI-OWX" secondAttribute="bottom" constant="27" id="bX7-zd-V3k"/>
                             <constraint firstItem="lGM-vn-H8J" firstAttribute="leading" secondItem="cUm-fB-8EJ" secondAttribute="leadingMargin" constant="57" id="dcD-Ww-0p5"/>
                             <constraint firstItem="FZf-rZ-Pur" firstAttribute="leading" secondItem="cUm-fB-8EJ" secondAttribute="leadingMargin" constant="8" id="fjN-ok-zFm"/>
                             <constraint firstItem="TFM-Hu-bfL" firstAttribute="top" secondItem="FhJ-du-dPa" secondAttribute="top" id="gPm-Oo-sQ2"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="8z6-VP-NZI" secondAttribute="trailing" constant="-3" id="gkH-1H-uFL"/>
                             <constraint firstItem="aPE-Zt-lOS" firstAttribute="top" secondItem="Joz-fK-vIF" secondAttribute="bottom" constant="127" id="jPk-ou-8bQ"/>
-                            <constraint firstItem="mbO-qZ-R8g" firstAttribute="trailing" secondItem="TFM-Hu-bfL" secondAttribute="trailing" id="nGT-dy-N5H"/>
-                            <constraint firstItem="mbO-qZ-R8g" firstAttribute="leading" secondItem="8z6-VP-NZI" secondAttribute="leading" id="pzO-0E-vKU"/>
-                            <constraint firstItem="v6x-Dd-Mcw" firstAttribute="leading" secondItem="8z6-VP-NZI" secondAttribute="leading" id="vbC-x2-MXr"/>
-                            <constraint firstItem="8z6-VP-NZI" firstAttribute="top" secondItem="6XS-KI-OWX" secondAttribute="bottom" constant="27" id="yfK-dO-qh6"/>
+                            <constraint firstItem="mbO-qZ-R8g" firstAttribute="trailing" secondItem="TFM-Hu-bfL" secondAttribute="trailing" constant="-50" id="nGT-dy-N5H"/>
+                            <constraint firstItem="lGM-vn-H8J" firstAttribute="top" secondItem="8z6-VP-NZI" secondAttribute="bottom" constant="10" id="omm-gn-XX6"/>
+                            <constraint firstItem="xpL-CY-KOs" firstAttribute="top" secondItem="TFM-Hu-bfL" secondAttribute="bottom" constant="6" id="rgG-6d-3YZ"/>
                             <constraint firstItem="CmO-AO-DvO" firstAttribute="centerX" secondItem="lGM-vn-H8J" secondAttribute="centerX" id="zq8-0w-lbW"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="yai-bo-KOv">
-                        <barButtonItem key="backBarButtonItem" title="Cancel" id="LnQ-lM-AYR"/>
+                        <barButtonItem key="backBarButtonItem" title="Never Mind" id="LnQ-lM-AYR"/>
                     </navigationItem>
                     <connections>
                         <outlet property="switchVisible" destination="Joz-fK-vIF" id="ZrO-hr-GUu"/>
@@ -300,7 +302,7 @@
                                 <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="20"/>
                                 <size key="titleShadowOffset" width="1" height="1"/>
                                 <state key="normal" title="Take Photo">
-                                    <color key="titleColor" red="0.0" green="0.70017011330000001" blue="0.75673076920000004" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.18823529410000001" green="0.58431372550000005" blue="0.72549019609999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -318,6 +320,7 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="OXC-LR-Avi" firstAttribute="top" secondItem="bew-cC-IsZ" secondAttribute="bottom" constant="13" id="0WG-w1-YQo"/>
                             <constraint firstItem="bew-cC-IsZ" firstAttribute="top" secondItem="2M8-GD-6dv" secondAttribute="bottom" constant="34" id="8EB-Q5-v46"/>
@@ -337,6 +340,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="EZ2-i4-dQe">
+                        <barButtonItem key="backBarButtonItem" title="Whoops" id="sI7-IF-jeK"/>
                         <barButtonItem key="rightBarButtonItem" title="Submit Your Photo" id="dV9-NI-hBF">
                             <connections>
                                 <action selector="submitImage:" destination="iqB-1N-ffy" id="TYL-NO-yA8"/>
@@ -390,26 +394,26 @@
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="Z8Q-Jc-g1i" detailTextLabel="s5I-S2-ak8" style="IBUITableViewCellStyleValue1" id="QVE-vQ-qCE">
-                                        <rect key="frame" x="0.0" y="28" width="201" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="Z8Q-Jc-g1i" detailTextLabel="s5I-S2-ak8" rowHeight="55" style="IBUITableViewCellStyleValue1" id="QVE-vQ-qCE">
+                                        <rect key="frame" x="0.0" y="28" width="201" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QVE-vQ-qCE" id="xll-Pd-vNk">
-                                            <rect key="frame" x="0.0" y="0.0" width="201" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="201" height="54.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Z8Q-Jc-g1i">
-                                                    <rect key="frame" x="15" y="9" width="38" height="26.5"/>
+                                                    <rect key="frame" x="15" y="10" width="48.5" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="18"/>
+                                                    <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="24"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                     <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <size key="shadowOffset" width="1" height="1"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="s5I-S2-ak8">
-                                                    <rect key="frame" x="136.5" y="9" width="49.5" height="25.5"/>
+                                                    <rect key="frame" x="124" y="12" width="62" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="18"/>
+                                                    <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="22"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                     <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -427,11 +431,12 @@
                                     <outlet property="delegate" destination="u4A-D1-Dxe" id="Vl7-1F-8tb"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scores" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMp-Ps-FKb">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Scores" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMp-Ps-FKb">
                                 <rect key="frame" x="71" y="58" width="178" height="82"/>
                                 <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="58"/>
-                                <color key="textColor" red="0.82451369870000002" green="0.97647058819999999" blue="0.90804169239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="highlightedColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yjx-UO-jkg">
@@ -478,7 +483,7 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Izl-rO-jtZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.45059788909999998" green="0.94863782050000001" blue="0.55277638340000002" alpha="0.60945581900000001" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.58431372550000005" green="0.96470588239999999" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6L8-mP-5GK">
                             <size key="itemSize" width="320" height="320"/>
                             <size key="headerReferenceSize" width="50" height="100"/>
@@ -539,6 +544,7 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="ZSs-G7-Xnk">
+                        <barButtonItem key="backBarButtonItem" title="No Going Back" id="rJn-c5-Wkl"/>
                         <barButtonItem key="rightBarButtonItem" title="Make Your Pick" id="C2n-s5-kXn">
                             <connections>
                                 <action selector="pickWinnerButtonClicked:" destination="cGz-7H-B5X" id="VBA-5g-nev"/>
@@ -576,6 +582,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="gtp-we-yMR"/>
-        <segue reference="07g-AE-VQP"/>
+        <segue reference="Bod-OD-9OC"/>
     </inferredMetricsTieBreakers>
 </document>

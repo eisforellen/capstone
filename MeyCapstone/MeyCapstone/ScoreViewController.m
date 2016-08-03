@@ -33,8 +33,8 @@
     [_game declareWinner];
     [_tableView reloadData];
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"backgroundPattern"]]];
-
     
+        
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -60,7 +60,6 @@
     });
     [_game declareWinner];
     [_tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
-    // add vote to the person.vote and trigger that the person voted
 }
 
 - (void)votingFor:(NSString *)voteReceiver votedBy:(NSString *)voter {
@@ -132,10 +131,16 @@
         vc.game.totalVoteCount = _game.totalVoteCount;
     } else if ([[segue identifier] isEqualToString:@"toImagePicker"]){
         // end game alert, display winner and then restart the game alert self perform segue with identifier toConnectionsView
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Game Over" message:@"The winner is:" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *playAgain = [UIAlertAction actionWithTitle:@"Play Again" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            [self performSegueWithIdentifier:@"toConnectionsView" sender:self];
-        }];
+        UIAlertController *alert = [UIAlertController
+                                    alertControllerWithTitle:@"Game Over"
+                                    message: [NSString stringWithFormat: @"The winner is: %@", [_game nameOfGameWinner]]
+                                    preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *playAgain = [UIAlertAction
+                                    actionWithTitle:@"Play Again"
+                                    style:UIAlertActionStyleDefault
+                                    handler:^(UIAlertAction *action) {
+                                        [self performSegueWithIdentifier:@"toConnectionsView" sender:self];
+                                    }];
         [alert addAction:playAgain];
         [self presentViewController:alert animated:YES completion:nil];
     } else {

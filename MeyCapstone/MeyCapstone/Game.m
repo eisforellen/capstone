@@ -42,13 +42,20 @@
     player.votesReceived ++;
 }
 
-- (NSArray *)sortPlayersByVotes{
-    NSLog(@"Players array before sort: %@", _playersArray);
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"votesReceived" ascending:NO];
+//- (NSArray *)sortPlayersByVotes{
+//    NSLog(@"Players array before sort: %@", _playersArray);
+//    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"votesReceived" ascending:NO];
+//    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+//    NSArray *playersSortedByVotesReceived = [_playersArray sortedArrayUsingDescriptors:sortDescriptors];
+//    NSLog(@"Sorted Players Array by Vote: %@", playersSortedByVotesReceived);
+//    return playersSortedByVotesReceived;
+//}
+
+- (NSArray *)sortPlayersBy:(NSString *)key{
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:NO];
     NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-    NSArray *playersSortedByVotesReceived = [_playersArray sortedArrayUsingDescriptors:sortDescriptors];
-    NSLog(@"Sorted Players Array by Vote: %@", playersSortedByVotesReceived);
-    return playersSortedByVotesReceived;
+    NSArray *playersSorted = [_playersArray sortedArrayUsingDescriptors:sortDescriptors];
+    return playersSorted;
 }
 
 - (void)clearAllVotes{
@@ -118,8 +125,10 @@
                 // add alert that says this
                 NSLog(@"Player %@ is the winner!", [sortedArray[0] name]);
                 [self awardPoint:[sortedArray objectAtIndex:0]];
+                // add alert for who won the round
             } else {
                 NSLog(@"It's a tie!");
+                // Add alert for tie
             }
         } else {
             NSLog(@"there is only one player");
@@ -131,7 +140,7 @@
     if (!_moveOnToNextRound){
         if ([self readyToAwardPoints]) {
             NSLog(@"THE GAME IS OVER WE HAVE A WEINER!");
-            [self awardPointToWinner:[self sortPlayersByVotes]];
+            [self awardPointToWinner:[self sortPlayersBy:@"votesReceived"]];
             _moveOnToNextRound = YES;
         } else {
             NSLog(@"No winner yet");
@@ -141,5 +150,21 @@
     }
 }
 
+- (NSString *)nameOfGameWinner{
+    NSArray *sortedPlayersByScore = [self sortPlayersBy:@"score"];
+    NSString *winner = [sortedPlayersByScore[0] name];
+    if ([sortedPlayersByScore[0] score] > [sortedPlayersByScore[1] score]) {
+        return winner;
+    } else {
+        NSString *winners;
+        for (Player *player in sortedPlayersByScore) {
+            if (player.score == [sortedPlayersByScore[0] score]) {
+                winners = [winner stringByAppendingString:[NSString stringWithFormat:@" & %@", player.name]];
+            }
+        }
+        return winners;
+    }
+    
+}
 
 @end
