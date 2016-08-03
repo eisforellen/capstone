@@ -42,14 +42,6 @@
     player.votesReceived ++;
 }
 
-//- (NSArray *)sortPlayersByVotes{
-//    NSLog(@"Players array before sort: %@", _playersArray);
-//    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"votesReceived" ascending:NO];
-//    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-//    NSArray *playersSortedByVotesReceived = [_playersArray sortedArrayUsingDescriptors:sortDescriptors];
-//    NSLog(@"Sorted Players Array by Vote: %@", playersSortedByVotesReceived);
-//    return playersSortedByVotesReceived;
-//}
 
 - (NSArray *)sortPlayersBy:(NSString *)key{
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:NO];
@@ -148,6 +140,10 @@
     } else {
         NSLog(@"declareWinner called but round is over\n");
     }
+}
+
+- (void)displayAlertWithTitle:(NSString *)title message:(NSString *)message{
+
 }
 
 - (NSString *)nameOfGameWinner{
