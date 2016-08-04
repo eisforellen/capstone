@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    [_instructionTextView setText:@"Connect with friends\nPick your best photo\nVote for your favorite pic\nMost votes wins the round"];
+    [_instructionTextView setText:@"Connect with friends\nPick your best photo\nVote for your favorite pic\nMost votes wins"];
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"backgroundPattern"]]];
     
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];

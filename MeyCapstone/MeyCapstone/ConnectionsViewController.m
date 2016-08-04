@@ -78,6 +78,7 @@
     [_appDelegate.mcHandler setupPeerWithDisplayName:_textPlayerName.text];
     [_appDelegate.mcHandler setupSession];
     [_appDelegate.mcHandler advertiseSelf:_switchVisible.isOn];
+    //UIAlertController *alert =
 };
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
