@@ -20,13 +20,13 @@
 - (void)setupGame:(NSArray *)connectedPeers;
 - (void)awardPoint:(Player *)player;
 - (void)addVotesReceived:(Player *)player;
-- (NSArray *)sortPlayersByVotes;
 - (void)clearAllVotes;
 - (BOOL)readyToAwardPoints;
 - (void)declareWinner;
 - (void)addVotesToPlayer:(NSString *)nameOfWinner;
 - (void)oneVotePerPlayer:(NSString *)voter;
 - (BOOL)checkIfPlayerVoted:(NSString *)voter;
+- (NSString *)nameOfGameWinner;
 
 
 @end

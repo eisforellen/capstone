@@ -28,7 +28,7 @@
     //Added to listen for submissions that happen before you submit yours
     _arrayOfAnswersSubmittedBeforeMine = [[NSMutableArray alloc] init];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleReceivingDataWithNotification:) name:@"DidReceiveDataNotification" object:nil];
-    
+    //[self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"backgroundPattern"]]];
 }
 
 - (void)viewWillAppear:(BOOL)animated{

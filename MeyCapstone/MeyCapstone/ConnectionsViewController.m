@@ -42,9 +42,10 @@
     _switchVisible.alpha = 0;
     _visibleToOthersLabel.hidden = YES;
     
-
+    
     
 }
+
 
 - (void)peerChangedStateWithNotification:(NSNotification *)notification {
     // Get state of the peer
@@ -77,6 +78,7 @@
     [_appDelegate.mcHandler setupPeerWithDisplayName:_textPlayerName.text];
     [_appDelegate.mcHandler setupSession];
     [_appDelegate.mcHandler advertiseSelf:_switchVisible.isOn];
+    //UIAlertController *alert =
 };
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{

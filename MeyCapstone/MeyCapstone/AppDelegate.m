@@ -18,6 +18,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     _mcHandler = [[MCHandler alloc] init];
 //    [self.window setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"backgroundPattern"]]];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:105/255.0 green:219/255.0 blue:172/255.0 alpha:1.0]];
     return YES;
 }
 
