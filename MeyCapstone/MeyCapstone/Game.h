@@ -22,11 +22,11 @@
 - (void)addVotesReceived:(Player *)player;
 - (void)clearAllVotes;
 - (BOOL)readyToAwardPoints;
-- (void)declareWinner;
-- (void)addVotesToPlayer:(NSString *)nameOfWinner;
+//- (void)declareWinner;
+//- (void)addVotesToPlayer:(NSString *)nameOfWinner;
 - (void)oneVotePerPlayer:(NSString *)voter;
 - (BOOL)checkIfPlayerVoted:(NSString *)voter;
 - (NSString *)nameOfGameWinner;
-
+- (NSArray *)sortPlayersBy:(NSString *)key;
 
 @end

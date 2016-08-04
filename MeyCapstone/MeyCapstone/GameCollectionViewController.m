@@ -36,7 +36,7 @@ static NSString * const reuseIdentifier = @"Cell";
     // AddObserver and Notification for when the above handle is triggered to send a notification back to the sender
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(peersDidReceiveDataWithNotification:) name:@"PeerReceivedDataNotification" object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveScoreFromPeersNotification:) name:@"DidReceiveDataNotification" object:nil];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveScoreFromPeersNotification:) name:@"DidReceiveDataNotification" object:nil];
     
 
 
@@ -44,31 +44,40 @@ static NSString * const reuseIdentifier = @"Cell";
 
 
 
-- (void)didReceiveScoreFromPeersNotification:(NSNotification *)notification {
-    MCPeerID *peerID = [[notification userInfo] objectForKey:@"peerID"];
-    NSString *voterName = peerID.displayName;
+//- (void)didReceiveScoreFromPeersNotification:(NSNotification *)notification {
 
-    
-    //NSDictionary *userInfo = [notification userInfo];
-    
-    NSData *receivedData = [[notification userInfo] objectForKey:@"data"];
-    NSString *nameOfPersonWhoWasVotedFor = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
-    NSLog(@"\n\n!!!!!!!! didReceiveScoreFromPeers");
-    
-    // check if the sender voted, if so log it. if not count the vote and mark the sender as voted
-    if ([_game checkIfPlayerVoted:voterName]) {
-        NSLog(@"%@ already voted - no votes added, current vote total: %i", voterName, _game.totalVoteCount);
-    } else {
-        [_game addVotesToPlayer:nameOfPersonWhoWasVotedFor];
-        [_game oneVotePerPlayer:voterName];
-    }
-//    for (int i = 0; i < _game.playersArray.count; i++) {
-//        if ([nameOfPersonWhoWasVotedFor isEqualToString:[[_game.playersArray objectAtIndex:i] name]]){
-//            [_game addVotesReceived:[_game.playersArray objectAtIndex:i]];
-//            _game.totalVoteCount ++;
-//            NSLog(@"A vote was added, vote count is now: %i", _game.totalVoteCount);
+//        MCPeerID *peerID = [[notification userInfo] objectForKey:@"peerID"];
+//        NSString *voterName = peerID.displayName;
+//
+//        
+//        //NSDictionary *userInfo = [notification userInfo];
+//        
+//        NSData *receivedData = [[notification userInfo] objectForKey:@"data"];
+//        NSString *nameOfPersonWhoWasVotedFor = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
+//        NSLog(@"\n\n!!!!!!!! $$$$$$$ didReceiveScoreFromPeers - this person %@ voted? %d", voterName, [_game checkIfPlayerVoted:voterName]);
+//        
+//        // check if the sender voted, if so log it. if not count the vote and mark the sender as voted
+//        if ([_game checkIfPlayerVoted:voterName]) {
+//            NSLog(@"\n\n***********%@ already voted - no votes added, current vote total: %i", voterName, _game.totalVoteCount);
+//        } else {
+//            [self addVotesToPlayer:nameOfPersonWhoWasVotedFor];
+//            [_game oneVotePerPlayer:voterName];
 //        }
-//    }
+//    
+//}
+
+- (void)addVotesToPlayer:(NSString *)nameOfWinner{
+    // check to see who won, compare sender of pick to current players if equal add 1 to score
+    // if game is not ready to award points
+    if (![_game readyToAwardPoints]) {
+        for (int i = 0; i < _game.playersArray.count; i++) {
+            if ([nameOfWinner isEqualToString:[[_game.playersArray objectAtIndex:i] name]]){
+                [_game addVotesReceived:[_game.playersArray objectAtIndex:i]];
+                _game.totalVoteCount ++;
+                NSLog(@"A vote was added, vote count is now: %i", _game.totalVoteCount);
+            }
+        }
+    }
     
 }
 
@@ -79,6 +88,8 @@ static NSString * const reuseIdentifier = @"Cell";
     NSDictionary *userInfo = [notification userInfo];
     
     NSData *receivedData = [userInfo objectForKey:@"data"];
+    
+
     SubmittedAnswer *submittedAnswer = [NSKeyedUnarchiver unarchiveObjectWithData:receivedData];
     NSLog(@"Submitted Answer on handleReceivingData: %@", submittedAnswer);
     
@@ -97,6 +108,27 @@ static NSString * const reuseIdentifier = @"Cell";
         NSLog(@"Notification was sent via dispath async");
     });
     [self.collectionView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+    
+    MCPeerID *peerID = [[notification userInfo] objectForKey:@"peerID"];
+    NSString *voterName = peerID.displayName;
+
+
+    NSString *nameOfPersonWhoWasVotedFor = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
+    NSLog(@"\n\n!!!!!!!! $$$$$$$ didReceiveScoreFromPeers - PERSON WHO WAS VOTED FOR %@ this person %@ voted? %d", nameOfPersonWhoWasVotedFor, voterName, [_game checkIfPlayerVoted:voterName]);
+
+    // check if the sender voted, if so log it. if not count the vote and mark the sender as voted
+    if (nameOfPersonWhoWasVotedFor != nil){
+        if (![_game checkIfPlayerVoted:voterName]) {
+            NSLog(@"\n\n&&&&&&& ADDING VOTE FOR %@", nameOfPersonWhoWasVotedFor);
+            [self addVotesToPlayer:nameOfPersonWhoWasVotedFor];
+            [_game oneVotePerPlayer:voterName];
+           
+        } else {
+            NSLog(@"\n\n***********%@ already voted - no votes added, current vote total: %i", voterName, _game.totalVoteCount);
+        }
+    } else {
+        NSLog(@"\nVOTEE IS NILL\n");
+    }
 
 }
 
@@ -116,18 +148,22 @@ static NSString * const reuseIdentifier = @"Cell";
 // Send vote as data to peers
 
 - (void)sendVoteToPeers{
-    NSData *dataToSend = [_selectedSubmissionName dataUsingEncoding:NSUTF8StringEncoding];
-    NSError *error;
-    
-    [_appDelegate.mcHandler.session sendData:dataToSend
-                                     toPeers:_appDelegate.mcHandler.session.connectedPeers
-                                    withMode:MCSessionSendDataReliable
-                                       error:&error];
-    if (error) {
-        NSLog(@"Error sending vote: %@", [error localizedDescription]);
+    // if player hasn't voted then send their vote
+    if (![_game checkIfPlayerVoted:_appDelegate.mcHandler.session.myPeerID.displayName]) {
+        NSData *dataToSend = [_selectedSubmissionName dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *error;
+        
+        [_appDelegate.mcHandler.session sendData:dataToSend
+                                         toPeers:_appDelegate.mcHandler.session.connectedPeers
+                                        withMode:MCSessionSendDataReliable
+                                           error:&error];
+        if (error) {
+            NSLog(@"Error sending vote: %@", [error localizedDescription]);
+        }
+        NSLog(@"Vote sent to peers from GameVC");
+    } else {
+        NSLog(@"\n!!!!!------ You already voted!");
     }
-    NSLog(@"Vote sent to peers from GameVC");
-    
 }
 
 
@@ -166,7 +202,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     // Configure the cell
     // remove this label for anonymity of senders
-    cell.label.text = [[_arrayOfSubmittedAnswers objectAtIndex:indexPath.row] sender];
+    //cell.label.text = [[_arrayOfSubmittedAnswers objectAtIndex:indexPath.row] sender];
     cell.image.image = [[_arrayOfSubmittedAnswers objectAtIndex:indexPath.row] submittedImage];
     
     return cell;

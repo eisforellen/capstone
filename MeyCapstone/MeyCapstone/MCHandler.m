@@ -45,7 +45,8 @@
 
 - (void)session:(MCSession *)session didReceiveData:(NSData *)data fromPeer:(MCPeerID *)peerID{
     NSDictionary *userInfo = @{@"data" : data,
-                               @"peerID" : peerID};
+                               @"peerID" : peerID
+};
     dispatch_async(dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter] postNotificationName:@"DidReceiveDataNotification" object:nil userInfo:userInfo];
     });
