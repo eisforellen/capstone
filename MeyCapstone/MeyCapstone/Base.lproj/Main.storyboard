@@ -96,11 +96,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Player Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v6x-Dd-Mcw">
-                                <rect key="frame" x="23" y="96" width="230" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Visible to Others:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FhJ-du-dPa">
                                 <rect key="frame" x="139" y="419" width="121" height="21"/>
                                 <constraints>
@@ -110,21 +105,6 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6XS-KI-OWX">
-                                <rect key="frame" x="254" y="91" width="54" height="39"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="54" id="wB9-jY-3Ug"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="19"/>
-                                <size key="titleShadowOffset" width="1" height="1"/>
-                                <state key="normal" title="Save">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="savePlayerNameButton:" destination="fdd-Am-djL" eventType="touchUpInside" id="lH0-3a-nGk"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Connected Players:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGM-vn-H8J">
                                 <rect key="frame" x="77" y="231" width="167" height="23"/>
                                 <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="16"/>
@@ -147,7 +127,7 @@
                                     <action selector="disconnectButtonClicked:" destination="fdd-Am-djL" eventType="touchUpInside" id="a1S-Ai-koq"/>
                                 </connections>
                             </button>
-                            <button alpha="0.94999999999999996" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TFM-Hu-bfL">
+                            <button alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TFM-Hu-bfL">
                                 <rect key="frame" x="0.0" y="419" width="320" height="110"/>
                                 <color key="backgroundColor" red="0.58431372549019611" green="0.96470588235294119" blue="0.7686274509803922" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -163,7 +143,7 @@
                                     <segue destination="iqB-1N-ffy" kind="push" identifier="toImagePickerVC" id="07g-AE-VQP"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8z6-VP-NZI">
+                            <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8z6-VP-NZI">
                                 <rect key="frame" x="0.0" y="157" width="320" height="64"/>
                                 <color key="backgroundColor" red="0.41176470590000003" green="0.85882352939999995" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -212,29 +192,49 @@
                                 <fontDescription key="fontDescription" name="KohinoorBangla-Semibold" family="Kohinoor Bangla" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Optional" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v6x-Dd-Mcw">
+                                <rect key="frame" x="41" y="93" width="183" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6XS-KI-OWX">
+                                <rect key="frame" x="225" y="88" width="54" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="54" id="wB9-jY-3Ug"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="19"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="savePlayerNameButton:" destination="fdd-Am-djL" eventType="touchUpInside" id="lH0-3a-nGk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="FZf-rZ-Pur" firstAttribute="top" secondItem="mbO-qZ-R8g" secondAttribute="bottom" constant="20" id="AU7-AW-Lgr"/>
-                            <constraint firstItem="6XS-KI-OWX" firstAttribute="top" secondItem="WOe-Wn-mm0" secondAttribute="bottom" constant="71" id="Aqz-X4-Ype"/>
+                            <constraint firstItem="6XS-KI-OWX" firstAttribute="top" secondItem="WOe-Wn-mm0" secondAttribute="bottom" constant="68" id="Aqz-X4-Ype"/>
                             <constraint firstItem="TFM-Hu-bfL" firstAttribute="top" secondItem="FZf-rZ-Pur" secondAttribute="bottom" constant="8" symbolic="YES" id="B2d-1I-gZC"/>
                             <constraint firstItem="CmO-AO-DvO" firstAttribute="centerX" secondItem="FZf-rZ-Pur" secondAttribute="centerX" id="BNn-Cp-sjj"/>
                             <constraint firstItem="6XS-KI-OWX" firstAttribute="leading" secondItem="v6x-Dd-Mcw" secondAttribute="trailing" constant="1" id="HDg-zH-yIK"/>
                             <constraint firstItem="mbO-qZ-R8g" firstAttribute="top" secondItem="lGM-vn-H8J" secondAttribute="bottom" constant="8" id="LYO-F5-FZ3"/>
                             <constraint firstItem="CmO-AO-DvO" firstAttribute="centerX" secondItem="cUm-fB-8EJ" secondAttribute="centerX" id="O69-Sx-TPv"/>
                             <constraint firstItem="8z6-VP-NZI" firstAttribute="centerX" secondItem="lGM-vn-H8J" secondAttribute="centerX" id="OUc-BR-8Fo"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="6XS-KI-OWX" secondAttribute="trailing" constant="-8" id="QGe-Ua-dto"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6XS-KI-OWX" secondAttribute="trailing" constant="21" id="QGe-Ua-dto"/>
                             <constraint firstItem="CmO-AO-DvO" firstAttribute="leading" secondItem="cUm-fB-8EJ" secondAttribute="leadingMargin" constant="45" id="RFp-OO-HBq"/>
                             <constraint firstItem="CmO-AO-DvO" firstAttribute="top" secondItem="WOe-Wn-mm0" secondAttribute="bottom" constant="43" id="SsE-hg-7y9"/>
-                            <constraint firstItem="v6x-Dd-Mcw" firstAttribute="leading" secondItem="cUm-fB-8EJ" secondAttribute="leadingMargin" constant="3" id="T0d-2J-xdm"/>
+                            <constraint firstItem="v6x-Dd-Mcw" firstAttribute="leading" secondItem="cUm-fB-8EJ" secondAttribute="leadingMargin" constant="21" id="T0d-2J-xdm"/>
                             <constraint firstItem="TFM-Hu-bfL" firstAttribute="centerX" secondItem="xpL-CY-KOs" secondAttribute="centerX" id="TlE-bw-8cE"/>
                             <constraint firstItem="TFM-Hu-bfL" firstAttribute="top" secondItem="FhJ-du-dPa" secondAttribute="top" id="UTz-fv-MVQ"/>
                             <constraint firstItem="8z6-VP-NZI" firstAttribute="leading" secondItem="cUm-fB-8EJ" secondAttribute="leading" id="WgK-HB-HQJ"/>
-                            <constraint firstItem="6XS-KI-OWX" firstAttribute="trailing" secondItem="Joz-fK-vIF" secondAttribute="trailing" id="XCI-ko-AbQ"/>
+                            <constraint firstItem="6XS-KI-OWX" firstAttribute="trailing" secondItem="Joz-fK-vIF" secondAttribute="trailing" constant="-29" id="XCI-ko-AbQ"/>
                             <constraint firstItem="v6x-Dd-Mcw" firstAttribute="centerY" secondItem="6XS-KI-OWX" secondAttribute="centerY" id="XKr-2O-pmz"/>
                             <constraint firstAttribute="trailingMargin" secondItem="FhJ-du-dPa" secondAttribute="trailing" constant="40" id="Xyy-gg-K4c"/>
                             <constraint firstItem="TFM-Hu-bfL" firstAttribute="trailing" secondItem="8z6-VP-NZI" secondAttribute="trailing" id="aq9-pJ-bXu"/>
-                            <constraint firstItem="8z6-VP-NZI" firstAttribute="top" secondItem="6XS-KI-OWX" secondAttribute="bottom" constant="27" id="bX7-zd-V3k"/>
+                            <constraint firstItem="8z6-VP-NZI" firstAttribute="top" secondItem="6XS-KI-OWX" secondAttribute="bottom" constant="30" id="bX7-zd-V3k"/>
                             <constraint firstItem="lGM-vn-H8J" firstAttribute="leading" secondItem="cUm-fB-8EJ" secondAttribute="leadingMargin" constant="57" id="dcD-Ww-0p5"/>
                             <constraint firstItem="FZf-rZ-Pur" firstAttribute="leading" secondItem="cUm-fB-8EJ" secondAttribute="leadingMargin" constant="8" id="fjN-ok-zFm"/>
                             <constraint firstItem="aPE-Zt-lOS" firstAttribute="top" secondItem="Joz-fK-vIF" secondAttribute="bottom" constant="127" id="jPk-ou-8bQ"/>

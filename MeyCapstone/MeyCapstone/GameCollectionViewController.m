@@ -49,7 +49,7 @@ static NSString * const reuseIdentifier = @"Cell";
     NSString *voterName = peerID.displayName;
 
     
-    NSDictionary *userInfo = [notification userInfo];
+    //NSDictionary *userInfo = [notification userInfo];
     
     NSData *receivedData = [[notification userInfo] objectForKey:@"data"];
     NSString *nameOfPersonWhoWasVotedFor = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];

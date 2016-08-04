@@ -78,7 +78,15 @@
     [_appDelegate.mcHandler setupPeerWithDisplayName:_textPlayerName.text];
     [_appDelegate.mcHandler setupSession];
     [_appDelegate.mcHandler advertiseSelf:_switchVisible.isOn];
-    //UIAlertController *alert =
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:@"Username Changed"
+                                message:[NSString stringWithFormat:@"Your username is now %@", _appDelegate.mcHandler.session.myPeerID.displayName]
+                                preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [alert dismissViewControllerAnimated:YES completion:nil];
+    }];
+    [alert addAction:ok];
+    [self presentViewController:alert animated:YES completion:nil];
 };
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
